@@ -62,6 +62,9 @@ db.sqlite3
 db.sqlite3-journal
 quran_db.db
 
+# Editor
+.idea
+
 # Flask stuff:
 instance/
 .webassets-cache
