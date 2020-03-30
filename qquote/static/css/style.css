@@ -7,8 +7,16 @@ body {
   margin-bottom: 60px;
 }
 
+.arabic-amiri {
+  font-family: 'Amiri', serif;
+}
+
 .page-container {
-  padding: 0 10%;
+  padding: 0 4%;
+}
+
+.font-large {
+  font-size: 30px;
 }
 
 .content {
