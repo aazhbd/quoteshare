@@ -28,4 +28,8 @@ class ChapterView(generic.ListView):
         chapter_info = Chapter.objects.filter(number=self.chapter_number)
         for ci in chapter_info:
             data['chapter_info'] = ci
+
+        data['author_info'] = Author.objects.all()
+        data['language_info'] = Language.objects.all()
         return data
+

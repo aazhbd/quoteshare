@@ -15,7 +15,7 @@ body {
   font-family: 'Mirza', cursive;
 }
 
-.arabic-Scheherazade {
+.arabic-scheherazade {
   font-family: 'Scheherazade', serif;
 }
 
@@ -34,6 +34,31 @@ body {
 .content {
   padding: 40px;
 }
+
+.card-content {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.panel-title {
+  position: relative;
+}
+
+.panel-title::after {
+  content: "\f107";
+  color: #fff;
+  top: -2px;
+  right: 0px;
+  position: absolute;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+}
+
+.panel-title[aria-expanded="true"]::after {
+  content: "\f106";
+  font-weight: 900;
+}
+
 
 #footer {
   position: relative;
