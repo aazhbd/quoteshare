@@ -1,0 +1,102 @@
+{% extends "main.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block scripttags %}
+{% endblock %}
+
+{% block content %}
+{% if msg_body %}
+<h4>{{ msg_body }}</h4>
+{% endif %}
+
+<div class="col-lg-3">
+    <p class="my-4">Selected Languages</p>
+
+    <div class="list-group">
+        <a href="#" class="list-group-item">Original Text</a>
+        <a href="#" class="list-group-item">English - Abdullah Yusuf Ali
+            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </a>
+        <a href="#" class="list-group-item">Bangla 1</a>
+    </div>
+
+    <p class="my-4">Language List</p>
+    <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
+        <div class="card">
+            <div class="card-header blue z-depth-1" role="tab" id="heading96">
+                <h5 class="text-uppercase mb-0 py-1">
+                    <a class="white-text font-weight-bold" data-toggle="collapse" href="#collapse96"
+                       aria-expanded="true"
+                       aria-controls="collapse96">
+                        English
+                    </a>
+                </h5>
+            </div>
+            <div id="collapse96" class="collapse show" role="tabpanel" aria-labelledby="heading96"
+                 data-parent="#accordionEx23">
+                <div class="card-body">
+                    First Card Body
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header blue z-depth-1" role="tab" id="heading97">
+                <h5 class="text-uppercase mb-0 py-1">
+                    <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse97"
+                       aria-expanded="false" aria-controls="collapse97">
+                        German
+                    </a>
+                </h5>
+            </div>
+            <div id="collapse97" class="collapse" role="tabpanel" aria-labelledby="heading97"
+                 data-parent="#accordionEx23">
+                <div class="card-body">
+                    Second Card body
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header blue z-depth-1" role="tab" id="heading98">
+                <h5 class="text-uppercase mb-0 py-1">
+                    <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse98"
+                       aria-expanded="false" aria-controls="collapse98">
+                        Bangla
+                    </a>
+                </h5>
+            </div>
+            <div id="collapse98" class="collapse" role="tabpanel" aria-labelledby="heading98"
+                 data-parent="#accordionEx23">
+                <div class="card-body">
+                    Third Card Body
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-9">
+    <div class="card card-outline-secondary my-4">
+        <div class="card-header">
+            <div class="float-left">
+                <a href="/{{ m.number }}/">{{ chapter_info.number }}</a> | {{chapter_info.transliteration}}
+            </div>
+            <div class="float-right arabic-amiri">{{ chapter_info.arabic_name }}</div>
+        </div>
+        <div class="card-body">
+            {% for m in chapter %}
+            <p>
+                <a href="/{{m.chapter.id}}/{{m.number}}">{{m.chapter.number}}:{{m.number}}</a> <small class="text-muted">{{m.author.alang}}-{{m.author}}</small>
+                <div class="arabic-text arabic-amiri font-large">
+                    <span lang="ar" xml:lang="ar">{{m.vtext}}</span>
+                </div>
+            </p>
+
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

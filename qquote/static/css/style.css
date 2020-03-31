@@ -11,12 +11,24 @@ body {
   font-family: 'Amiri', serif;
 }
 
+.arabic-mirza {
+  font-family: 'Mirza', cursive;
+}
+
+.arabic-Scheherazade {
+  font-family: 'Scheherazade', serif;
+}
+
+.arabic-text {
+  direction: rtl; unicode-bidi: embed; text-align: right;
+}
+
 .page-container {
   padding: 0 4%;
 }
 
 .font-large {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .content {

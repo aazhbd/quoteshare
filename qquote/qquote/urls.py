@@ -7,7 +7,8 @@ from quran import views
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='index'),
-    # path('', TemplateView.as_view(template_name='main.html')),
+    #path('<int:chapter>/', views.ChapterView, name='chapter'),
+    path('<int:chapter>/', views.ChapterView.as_view(), name='chapter'),
     path('admin/', admin.site.urls),
     path('baton/', include('baton.urls')),
     path('accounts/', include('allauth.urls')),
