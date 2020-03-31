@@ -7,6 +7,16 @@ body {
   margin-bottom: 60px;
 }
 
+
+@media (min-width: 992px) {
+  .collapse.dont-collapse-sm {
+    display: block;
+    height: auto !important;
+    visibility: visible;
+  }
+}
+
+
 .arabic-amiri {
   font-family: 'Amiri', serif;
 }
