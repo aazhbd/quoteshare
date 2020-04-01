@@ -8,7 +8,7 @@
 {% block content %}
 
 <header class="bg-primary teal lighten-1 white-text">
-    <div class="container text-center p-2 mx-auto">
+    <div class="container text-center p-2 pt-4 mx-auto">
         <h2 class="heading h2-responsive">The Holy Quran</h2>
         <p>Find a translation of the holy Quran in your own language.</p>
     </div>
@@ -23,9 +23,8 @@
         {% endif %}
 
         {% for m in chapters %}
-
         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <div class="card card-outline-secondary my-4">
+            <div class="card card-outline-secondary my-2">
                 <div class="card-header font-weight-bold">
                     <div class="float-left">
                         <a href="/{{ m.number }}/">{{ m.number }}</a> | {{ m.transliteration|slice:"6:" }}

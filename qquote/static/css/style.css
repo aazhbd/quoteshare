@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+a{
+  color: teal;
+}
+
 
 @media (min-width: 992px) {
   .collapse.dont-collapse-sm {
