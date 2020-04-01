@@ -1,13 +1,13 @@
 {% extends "main.html" %}
 {% load static %}{% load i18n %}
-{% block title %} Home {% endblock %}
+{% block title %} Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} {% endblock %}
 
 {% block scripttags %}
 {% endblock %}
 
 {% block content %}
 
-<header class="bg-primary mb-2 teal lighten-1 white-text">
+<header class="bg-primary teal lighten-1 white-text">
     <div class="container text-center p-2 mx-auto">
         <h2 class="h1-responsive arabic-amiri">{{chapter_info.arabic_name}}</h2>
         <p>Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} | Total Verses {{ chapter_info.total_verses }} | English name: {{chapter_info.english_name}}</p>

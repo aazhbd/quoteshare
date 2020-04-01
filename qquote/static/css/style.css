@@ -1,10 +1,12 @@
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 200px;
+  height: 100%;
 }
 
 
@@ -69,18 +71,9 @@ body {
   font-weight: 900;
 }
 
-
-#footer {
-  position: relative;
+.footer {
+  position: absolute;
+  bottom: 0;
   float: none;
-  text-align: center;
-  margin: auto;
-  color: #999;
-  padding: 10px;
-}
-
-#footer .content {
-  margin: 0 auto;
-  text-align: center;
-  padding: 10px;
+  margin-top: 10px;
 }
