@@ -6,38 +6,41 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-lg-12" style="margin-bottom: 0px">
-    <div class="jumbotron jumbotron-fluid text-center mdb-color lighten-3 white-text mx-2 mb-1">
-        <h2 class="card-title h2">The Holy Quran</h2>
-        <div class="row d-flex justify-content-center">
-            <div class="col-xl-6 pb-2">
-                <p class="card-text">
-                    Find a translation of the holy Quran in your own language.
-                </p>
+
+<header class="bg-primary mb-2 teal lighten-1 white-text">
+    <div class="container text-center p-2 mx-auto">
+        <h2 class="heading h2-responsive">The Holy Quran</h2>
+        <p>Find a translation of the holy Quran in your own language.</p>
+    </div>
+</header>
+
+<div class="container-fluid page-container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+        {% for m in chapters %}
+
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header font-weight-bold">
+                    <div class="float-left">
+                        <a href="/{{ m.number }}/">{{ m.number }}</a> | {{ m.transliteration|slice:"6:" }}
+                    </div>
+                    <div class="float-right arabic-amiri">{{ m.arabic_name }}</div>
+                </div>
+                <div class="card-body">
+                    <span class="font-small">{{ m.english_name }}</span>
+                    <a href="/{{ m.number }}" class="font-large card-link float-right fas fa-chevron-circle-right"></a>
+                </div>
             </div>
         </div>
-        <hr class="my-4 rgba-white-light">
-        <div class="row d-flex justify-content-center">
-            Jump to:
-        </div>
+        {% endfor %}
     </div>
 </div>
 
-{% for m in chapters %}
 
-<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-    <div class="card card-outline-secondary my-4">
-        <div class="card-header font-weight-bold">
-            <div class="float-left">
-                <a href="/{{ m.number }}/">{{ m.number }}</a> | {{ m.transliteration|slice:"6:" }}
-            </div>
-            <div class="float-right arabic-amiri">{{ m.arabic_name }}</div>
-        </div>
-        <div class="card-body">
-            <span class="font-small">{{ m.english_name }}</span>
-            <a href="/{{ m.number }}" class="font-large card-link float-right fas fa-chevron-circle-right"></a>
-        </div>
-    </div>
-</div>
-{% endfor %}
 {% endblock %}

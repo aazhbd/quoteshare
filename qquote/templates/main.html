@@ -50,6 +50,7 @@
     </div>
 </nav>
 
+{% block content %}
 <div class="container-fluid page-container">
     <div class="row">
         {% if messages %}
@@ -58,11 +59,10 @@
         {% endfor %}
         {% endif %}
 
-        {% block content %}
         This page is under construction.
-        {% endblock %}
     </div>
 </div>
+{% endblock %}
 
 <div id="footer">
     <div class="content">

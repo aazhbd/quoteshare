@@ -6,62 +6,73 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-lg-3">
-    <p class="my-4">Selected Languages</p>
+<div class="container-fluid page-container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
 
-    <div class="list-group">
-        <a href="#" class="list-group-item">Original Text</a>
-        <a href="#" class="list-group-item">English - Abdullah Yusuf Ali
-            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-        </a>
-        <a href="#" class="list-group-item">Bangla 1</a>
-    </div>
+        <div class="col-lg-3">
+            <p class="my-4">Selected Languages</p>
 
-    <p class="my-4">Language List
-        <a class="d-lg-none d-xl-none" data-toggle="collapse" href="#languageCollapse" role="button" aria-expanded="false" aria-controls="languageCollapse">Expand</a>
-    </p>
-    <div class="collapse dont-collapse-sm" id="languageCollapse">
-        <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
-            {% for li in language_info %}
-            <div class="card">
-                <div class="card-header blue z-depth-1 card-content" role="tab" id="heading{{li.id}}">
-                    <h5 class="mb-0 py-1 white-text panel-title" data-toggle="collapse" href="#collapse{{li.id}}" aria-expanded="false" aria-controls="collapse{{li.id}}">
-                        {{li.name}}
-                    </h5>
-                </div>
-                <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
-                    {% for ai in author_info %}{% if ai.alang == li %}
-                    <div class="card-body card-content">{{ai.name}}</div>
-                    {% endif %}{% endfor %}
-                </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item">Original Text</a>
+                <a href="#" class="list-group-item">English - Abdullah Yusuf Ali
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </a>
+                <a href="#" class="list-group-item">Bangla 1</a>
             </div>
-            {% endfor %}
+
+            <p class="my-4">Translations
+                <a class="d-lg-none d-xl-none" data-toggle="collapse" href="#languageCollapse" role="button" aria-expanded="false" aria-controls="languageCollapse">Expand</a>
+            </p>
+            <div class="collapse dont-collapse-sm" id="languageCollapse">
+                <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
+                    {% for li in language_info %}
+                    <div class="card">
+                        <div class="card-header blue z-depth-1 card-content" role="tab" id="heading{{li.id}}">
+                            <h5 class="mb-0 py-1 white-text panel-title" data-toggle="collapse" href="#collapse{{li.id}}" aria-expanded="false" aria-controls="collapse{{li.id}}">
+                                {{li.name}}
+                            </h5>
+                        </div>
+                        <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
+                        {% for ai in author_info %}{% if ai.alang == li %}
+                        <div class="card-body card-content">{{ai.name}}</div>
+                        {% endif %}{% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-lg-9">
-    <div class="card card-outline-secondary my-4">
-        <div class="card-header">
-            <div class="float-left">
-                <a href="/{{ m.number }}/">{{ chapter_info.number }}</a> | {{chapter_info.transliteration}}
+    <div class="col-lg-9">
+        <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                <div class="float-left">
+                    <a href="/{{chapter_info.number}}/">{{ chapter_info.number }}</a> | {{chapter_info.transliteration}}
+                </div>
+                <div class="float-right arabic-scheherazade">{{ chapter_info.arabic_name }}</div>
             </div>
-            <div class="float-right arabic-scheherazade">{{ chapter_info.arabic_name }}</div>
-        </div>
-        <div class="card-body">
-            {% for m in verse %}
-            <p>
-                <a href="/{{m.chapter.id}}/{{m.number}}">{{m.chapter.number}}:{{m.number}}</a> <small class="text-muted">{{m.author.alang}}-{{m.author}}</small>
+            <div class="card-body">
+                {% for m in verse %}
+                <p>
+                    <a href="/{{m.chapter.id}}/{{m.number}}">{{m.chapter.number}}:{{m.number}}</a> <small class="text-muted">{{m.author.alang}}-{{m.author}}</small>
                 <div class="arabic-text arabic-amiri font-large">
                     <span lang="ar" xml:lang="ar">{{m.vtext}}</span>
                 </div>
-            </p>
+                </p>
 
-            <hr>
-            {% endfor %}
+                <hr>
+                {% endfor %}
+            </div>
         </div>
     </div>
+    </div>
 </div>
+
 
 
 {% endblock %}

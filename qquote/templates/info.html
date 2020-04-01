@@ -6,39 +6,48 @@
 {% block keywords %} Quran, translations, several languages {% endblock %}
 
 {% block content %}
-<h2 id="introduction">Introduction</h2>
-<p>This site takes a humble attempt to provide a set of facilities for comprehensive research on Quran and available materials and provides translation in various languages.</p>
-<p>The site contains tools such as,</p>
-<ul>
-    <li>Browsing the full Quran in the Original Text and its translations in various languages by various renowned scholars around the globe. A large collection of translations from various authors have been included in this site to compare the meanings and understand.</li>
-</ul>
-<ul>
-    <li><p>Ability to search within the verses of Quran, its translations as well as comments in many languages. All texts, translations and comments of users can be searched efficiently to provide relevant results.</p>
-    </li>
-    <li><p>Having discussion by adding Comments, Questions, Translations, Explanations, History of Verses in order to better help in understanding the message of Quran. Users may register to contribute to any of the verses with the help of references from available materials.</p>
-    </li>
-</ul>
-<h2 id="disclaimer">Disclaimer</h2>
-<p>The Holy Quran is the word of Allah (the God) revealed to the prophet Muhammad (pbuh) during his life time at Mecca and Medina as a guidence to the human kind. It is widely regarded as the finest piece of literature in Arabic language. The Quran’s message is errorless and don&#39;t have any contradictions. It has the set of instructions for mankind for their life and the hereafter. Various scholars have published research, translations and commentaries to better realize and understand the Holy Quran. The Quran contains signs and indication for those who search for truth.</p>
-<p>All rights and credits for the translations belong to respective translators, scholars and maintainers.</p>
-<p>Original Text, and most of its translations and transliteration data sources include</p>
-<ul>
-    <li>www.qurandatabase.org,</li>
-    <li>www.tanzil.info,</li>
-    <li>www.theholyquran.org,</li>
-    <li>Zekr project, zekr.org,</li>
-    <li>islam.googlecode.com/files/quran_bangla.sql.zip,</li>
-    <li>quran-online.net,</li>
-    <li>www.islamforbulgaria.com,</li>
-    <li>www.islamware.com,</li>
-    <li>www.theholyquran.org,</li>
-    <li>www.rojakurdi.com/Kurdi/quran.html</li>
-    <li>www.quran.com</li>
-    <li>Bosnian and Turkish web sites, and many other sources.</li>
-</ul>
-<h2 id="acknowledgement">Acknowledgement</h2>
-<p>I would like to acknowledge gratitude to almighty Allah (swt) for allowing the efforts to make this website possible. It has been largely helped by the open source Muslim community databases and technologies that are maintained by several generous people around the world. Also many of my friends and my mother have given me useful pointers and advice. Close collaboration has been given by S. T. Rumy on many different issues. On several occasions a number of suggestions and help has been received from Y. A. Farhad. I am working to make it accurate, more informative and featureful. Your questions and feedbacks are highly appreciated.</p>
-<p>Feel free to mail me at <a href="mailto:aazhbd@yahoo.com">aazhbd@yahoo.com</a>. Abdullah Al Zakir Hossain (Mahbub)</p>
+<div class="container-fluid page-container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
 
+        <h2 id="introduction">Introduction</h2>
+        <p>This site takes a humble attempt to provide a set of facilities for comprehensive research on Quran and available materials and provides translation in various languages.</p>
+        <p>The site contains tools such as,</p>
+        <ul>
+            <li>Browsing the full Quran in the Original Text and its translations in various languages by various renowned scholars around the globe. A large collection of translations from various authors have been included in this site to compare the meanings and understand.</li>
+        </ul>
+        <ul>
+            <li><p>Ability to search within the verses of Quran, its translations as well as comments in many languages. All texts, translations and comments of users can be searched efficiently to provide relevant results.</p>
+            </li>
+            <li><p>Having discussion by adding Comments, Questions, Translations, Explanations, History of Verses in order to better help in understanding the message of Quran. Users may register to contribute to any of the verses with the help of references from available materials.</p>
+            </li>
+        </ul>
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>The Holy Quran is the word of Allah (the God) revealed to the prophet Muhammad (pbuh) during his life time at Mecca and Medina as a guidence to the human kind. It is widely regarded as the finest piece of literature in Arabic language. The Quran’s message is errorless and don&#39;t have any contradictions. It has the set of instructions for mankind for their life and the hereafter. Various scholars have published research, translations and commentaries to better realize and understand the Holy Quran. The Quran contains signs and indication for those who search for truth.</p>
+        <p>All rights and credits for the translations belong to respective translators, scholars and maintainers.</p>
+        <p>Original Text, and most of its translations and transliteration data sources include</p>
+        <ul>
+            <li>www.qurandatabase.org,</li>
+            <li>www.tanzil.info,</li>
+            <li>www.theholyquran.org,</li>
+            <li>Zekr project, zekr.org,</li>
+            <li>islam.googlecode.com/files/quran_bangla.sql.zip,</li>
+            <li>quran-online.net,</li>
+            <li>www.islamforbulgaria.com,</li>
+            <li>www.islamware.com,</li>
+            <li>www.theholyquran.org,</li>
+            <li>www.rojakurdi.com/Kurdi/quran.html</li>
+            <li>www.quran.com</li>
+            <li>Bosnian and Turkish web sites, and many other sources.</li>
+        </ul>
+        <h2 id="acknowledgement">Acknowledgement</h2>
+        <p>I would like to acknowledge gratitude to almighty Allah (swt) for allowing the efforts to make this website possible. It has been largely helped by the open source Muslim community databases and technologies that are maintained by several generous people around the world. Also many of my friends and my mother have given me useful pointers and advice. Close collaboration has been given by S. T. Rumy on many different issues. On several occasions a number of suggestions and help has been received from Y. A. Farhad. I am working to make it accurate, more informative and featureful. Your questions and feedbacks are highly appreciated.</p>
+        <p>Feel free to mail me at <a href="mailto:aazhbd@yahoo.com">aazhbd@yahoo.com</a>. Abdullah Al Zakir Hossain (Mahbub)</p>
 
+    </div>
+</div>
 {% endblock %}
