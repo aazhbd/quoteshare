@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block content %}
+
+<header class="bg-primary mb-2 teal lighten-1 white-text">
+    <div class="container text-center p-2 mx-auto">
+        <h2 class="h1-responsive arabic-amiri">{{chapter_info.arabic_name}}</h2>
+        <p>Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} | Total Verses {{ chapter_info.total_verses }} | English name: {{chapter_info.english_name}}</p>
+    </div>
+</header>
+
 <div class="container-fluid page-container">
     <div class="row">
         {% if messages %}
