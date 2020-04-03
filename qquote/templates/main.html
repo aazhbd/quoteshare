@@ -13,7 +13,6 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    {% block scripttags %}{% endblock %}
 </head>
 
 <body>
@@ -86,11 +85,10 @@
         | &nbsp;<a href="/info">Info</a>
     </div>
 </footer>
-
 <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+{% block scripttags %}{% endblock %}
 </body>
-
 </html>

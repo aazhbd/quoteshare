@@ -26,10 +26,10 @@
         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
             <div class="card card-outline-secondary my-2">
                 <div class="card-header font-weight-bold">
-                    <div class="float-left">
-                        <a href="/{{ m.number }}/">{{ m.number }}</a> | {{ m.transliteration|slice:"6:" }}
-                    </div>
+                    <a href="/{{ m.number }}/">
+                    <div class="float-left">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</div>
                     <div class="float-right arabic-amiri">{{ m.arabic_name }}</div>
+                    </a>
                 </div>
                 <div class="card-body">
                     <span class="font-small">{{ m.english_name }}</span>

@@ -3,6 +3,18 @@
 {% block title %} Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} {% endblock %}
 
 {% block scripttags %}
+<script>
+    $(document).ready(function() {
+        $(".author-name").click(function() {
+            if(window.location.search.toLowerCase().indexOf("?t") >= 0) {
+                window.location.search += "," + $(this).attr('id');
+            } else {
+                window.location.search = '?t=' + $(this).attr('id');
+            }
+            return false;
+        });
+    });
+</script>
 {% endblock %}
 
 {% block content %}
@@ -23,14 +35,16 @@
         {% endif %}
 
         <div class="col-lg-3">
-            <p class="my-2">Selected Languages</p>
+            <p class="my-2">Selected Translations</p>
 
             <div class="list-group">
-                <a href="#" class="list-group-item card-content">Original Text</a>
-                <a href="#" class="list-group-item card-content">English - Abdullah Yusuf Ali
-                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </a>
-                <a href="#" class="list-group-item card-content">Bangla 1</a>
+                {% for author in selected_authors %}
+                    <a href="#" class="list-group-item card-content">
+                    {{author}}{% if 5 != author.id %}
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    {% endif %}
+                    </a>
+                {% endfor %}
             </div>
 
             <p class="my-2">Translations
@@ -47,7 +61,7 @@
                         </div>
                         <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
                         {% for ai in author_info %}{% if ai.alang == li %}
-                        <div class="card-body card-content">{{ai.name}}</div>
+                        <div class="card-body card-content author-name" id="{{ai.id}}">{{ai.name}}</div>
                         {% endif %}{% endfor %}
                     </div>
                 </div>
@@ -65,12 +79,21 @@
                 <div class="float-right arabic-scheherazade">{{ chapter_info.arabic_name }}</div>
             </div>
             <div class="card-body">
-                {% for m in chapter %}
+                {% for verses in translations %}
                 <p>
-                    <a href="/{{m.chapter.id}}/{{m.number}}">{{m.chapter.number}}:{{m.number}}</a> <small class="text-muted">{{m.author.alang}}-{{m.author}}</small>
-                <div class="arabic-text arabic-amiri font-large">
-                    <span lang="ar" xml:lang="ar">{{m.vtext}}</span>
-                </div>
+                    {% for v in verses %}
+                        {% if v.author.id == 5 %}
+                    <a href="/{{v.chapter.number}}/{{m.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}}-{{v.author.name}}</small>
+                    <div class="arabic-text arabic-amiri font-large">
+                        <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                    </div>
+                        {% else %}
+                    <div class="font-normal">
+                        <a href="/{{v.chapter.number}}/{{m.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}}-{{v.author.name}}</small>
+                        <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </p>
                 <hr>
                 {% endfor %}
