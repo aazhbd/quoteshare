@@ -6,14 +6,18 @@
 <script>
     $(document).ready(function() {
         $(".author-name").click(function() {
+            var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',').length;
+            if(para >= 4) {
+                return false;
+            }
             var newtrans = $(this).attr('id');
             if(window.location.search.indexOf(newtrans) >= 0) {
                 return false;
             }
             if(window.location.search.toLowerCase().indexOf("?t") >= 0) {
-                window.location.search += "," + $(this).attr('id');
+                window.location.search += "," + newtrans;
             } else {
-                window.location.search = '?t=' + $(this).attr('id');
+                window.location.search = '?t=' + newtrans;
             }
             return false;
         });
