@@ -37,6 +37,7 @@ a{
 
 .arabic-text {
   direction: rtl; unicode-bidi: embed; text-align: right;
+  line-height: 4rem;
 }
 
 .page-container {

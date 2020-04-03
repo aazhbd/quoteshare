@@ -48,7 +48,7 @@
             <div class="list-group">
                 {% for author in selected_authors %}
                     <a href="#" class="list-group-item card-content">
-                    {{author}}{% if 5 != author.id %}
+                    {{author}}{% if 1 != author.id %}
                         <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
                     {% endif %}
                     </a>
@@ -87,23 +87,21 @@
                 <div class="float-right arabic-scheherazade">{{ chapter_info.arabic_name }}</div>
             </div>
             <div class="card-body">
-                {% for verses in translations %}
+                {% for v in translations %}
                 <p>
-                    {% for v in verses %}
-                        {% if v.author.id == 5 %}
-                    <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}}-{{v.author.name}}</small>
+                    {% if v.author.id == 1 %}
+                    <hr>
+                    <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
                     <div class="arabic-text arabic-amiri font-large">
                         <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
                     </div>
-                        {% else %}
+                    {% else %}
                     <div class="font-normal">
-                        <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}}-{{v.author.name}}</small>
+                        <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
                         <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
                     </div>
-                        {% endif %}
-                    {% endfor %}
+                    {% endif %}
                 </p>
-                <hr>
                 {% endfor %}
             </div>
         </div>
