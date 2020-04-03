@@ -6,6 +6,10 @@
 <script>
     $(document).ready(function() {
         $(".author-name").click(function() {
+            var newtrans = $(this).attr('id');
+            if(window.location.search.indexOf(newtrans) >= 0) {
+                return false;
+            }
             if(window.location.search.toLowerCase().indexOf("?t") >= 0) {
                 window.location.search += "," + $(this).attr('id');
             } else {
