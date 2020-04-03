@@ -7,7 +7,7 @@
     $(document).ready(function() {
         $(".author-name").click(function() {
             var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',').length;
-            if(para >= 4) {
+            if(para >= 5) {
                 return false;
             }
             var newtrans = $(this).attr('id');
@@ -98,7 +98,7 @@
                     {% else %}
                     <div class="font-normal">
                         <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
-                        <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                        <span lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
                     </div>
                     {% endif %}
                 </p>

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.db.models import Q, Count, Min, Max, Sum
 from quran.models import *
 
+from django.db.models.query import QuerySet
+
 from django.views import generic
 
 class HomeView(generic.ListView):
@@ -36,8 +38,12 @@ class ChapterView(generic.TemplateView):
         for ci in chapter_info:
             data['chapter_info'] = ci
 
-        data['author_info'] = Author.objects.all()
-        data['language_info'] = Language.objects.all()
+        dista = Verse.objects.raw('SELECT id, author_id FROM quran_verse GROUP BY author_id')
+        distinct_authors = [dauthor.author.id for dauthor in dista]
+        distinct_langauges = [dauthor.author.alang.id for dauthor in dista]
+        data['author_info'] = Author.objects.filter(id__in=distinct_authors)
+
+        data['language_info'] = Language.objects.filter(id__in=distinct_langauges)
         return data
 
 
