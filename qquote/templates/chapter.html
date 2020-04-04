@@ -69,7 +69,7 @@
                         </div>
                         <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
                         {% for ai in author_info %}{% if ai.alang == li %}
-                        <div class="card-body card-content author-name" id="{{ai.id}}">{{ai.name}}</div>
+                        <a class="author-name" id="{{ai.id}}"><div class="card-body card-content">{{ai.name}}</div></a>
                         {% endif %}{% endfor %}
                     </div>
                 </div>
