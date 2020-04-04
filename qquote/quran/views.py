@@ -41,8 +41,8 @@ class ChapterView(generic.TemplateView):
         dista = Verse.objects.raw('SELECT id, author_id FROM quran_verse GROUP BY author_id')
         distinct_authors = [dauthor.author.id for dauthor in dista]
         distinct_langauges = [dauthor.author.alang.id for dauthor in dista]
-        data['author_info'] = Author.objects.filter(id__in=distinct_authors)
 
+        data['author_info'] = Author.objects.filter(id__in=distinct_authors)
         data['language_info'] = Language.objects.filter(id__in=distinct_langauges)
         return data
 
@@ -56,18 +56,34 @@ class VerseView(generic.ListView):
         self.object_list = self.get_queryset()
         self.chapter_number = kwagrs['chapter']
         self.verse_number = kwagrs['verse']
-        v = Q(chapter=self.chapter_number) & Q(number=self.verse_number) & Q(author__name='Original Text')
-        self.object_list = self.object_list.filter(v)
+
+        self.author_ids = [1]
+        authors = request.GET.get("t", None)
+        if authors:
+            author_ids = authors.split(',')
+            self.author_ids = self.author_ids + author_ids
+            self.selected_authors = Author.objects.filter(pk__in=self.author_ids)
+        else:
+            self.selected_authors = Author.objects.filter(pk=1)
+
+        v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number) & Q(number=self.verse_number)
+        self.object_list = self.object_list.filter(v).order_by('number', 'author')
         context = self.get_context_data()
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
+        data['selected_authors'] = self.selected_authors
+
         chapter_info = Chapter.objects.filter(number=self.chapter_number)
         for ci in chapter_info:
             data['chapter_info'] = ci
 
-        data['author_info'] = Author.objects.all()
-        data['language_info'] = Language.objects.all()
+        dista = Verse.objects.raw('SELECT id, author_id FROM quran_verse GROUP BY author_id')
+        distinct_authors = [dauthor.author.id for dauthor in dista]
+        distinct_langauges = [dauthor.author.alang.id for dauthor in dista]
+
+        data['author_info'] = Author.objects.filter(id__in=distinct_authors)
+        data['language_info'] = Language.objects.filter(id__in=distinct_langauges)
         return data
 
