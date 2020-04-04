@@ -21,6 +21,17 @@
                 }
                 return false;
             });
+            $(".closeTranslation").click(function () {
+                var removetrans = $(this).attr('id');
+                var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',');
+                var total = jQuery.grep(para, function(value) {
+                    return value != removetrans;
+                });
+                if(total.length > 0)
+                    window.location.search = '?t=' + total.join(",");
+                else window.location.search = "";
+                return false;
+            });
         });
     </script>
 {% endblock %}
@@ -47,9 +58,9 @@
 
             <div class="list-group">
                 {% for author in selected_authors %}
-                    <a href="#" class="list-group-item card-content">
+                    <a href="" class="list-group-item card-content">
                         {{author}}{% if 1 != author.id %}
-                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <button type="button" class="close" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true">×</span></button>
                         {% endif %}
                     </a>
                 {% endfor %}

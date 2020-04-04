@@ -61,6 +61,7 @@ class VerseView(generic.ListView):
         authors = request.GET.get("t", None)
         if authors:
             author_ids = authors.split(',')
+            author_ids = [i for i in author_ids if isinstance(i, int) or isinstance(i, str)]
             self.author_ids = self.author_ids + author_ids
             self.selected_authors = Author.objects.filter(pk__in=self.author_ids)
         else:
