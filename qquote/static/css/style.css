@@ -28,8 +28,16 @@ a{
 }
 
 .arabic-text {
-  direction: rtl; unicode-bidi: embed; text-align: right;
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: right;
   line-height: 5rem;
+}
+
+.translation-text-right {
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: right;
 }
 
 @font-face {

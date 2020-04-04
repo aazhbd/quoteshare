@@ -88,20 +88,20 @@
             </div>
             <div class="card-body">
                 {% for v in translations %}
-                <p>
+                <div>
                     {% if v.author.id == 1 %}
                     <hr>
-                    <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
+                    <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;<small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
                     <div class="arabic-text arabic-amiri font-large">
                         <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
                     </div>
                     {% else %}
                     <div class="font-normal">
                         <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
-                        <span class="translations-text" lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
+                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
                     </div>
                     {% endif %}
-                </p>
+                </div>
                 {% endfor %}
             </div>
         </div>
