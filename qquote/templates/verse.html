@@ -7,7 +7,7 @@
         $(document).ready(function() {
             $(".author-name").click(function() {
                 var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',').length;
-                if(para >= 5) {
+                if(para >= 10) {
                     return false;
                 }
                 var newtrans = $(this).attr('id');
