@@ -27,17 +27,21 @@ a{
   font-family: 'Amiri', serif;
 }
 
-.arabic-mirza {
-  font-family: 'Mirza', cursive;
-}
-
-.arabic-scheherazade {
-  font-family: 'Scheherazade', serif;
-}
-
 .arabic-text {
   direction: rtl; unicode-bidi: embed; text-align: right;
-  line-height: 4rem;
+  line-height: 5rem;
+}
+
+@font-face {
+  font-family: "Noto Mono";
+  src: url('/static/fonts/NotoMono-Regular.ttf');
+}
+
+.translations-text {
+  font-family: "Noto Mono";
+  font-stretch: condensed;
+  letter-spacing: -1px;
+  font-size: 1.1rem;
 }
 
 .page-container {

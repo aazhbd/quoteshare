@@ -84,7 +84,7 @@
                 <div class="float-left">
                     <a href="/{{ chapter_info.number }}/">{{ chapter_info.number }}</a> | {{chapter_info.transliteration}}
                 </div>
-                <div class="float-right arabic-scheherazade">{{ chapter_info.arabic_name }}</div>
+                <div class="float-right arabic-amiri">{{ chapter_info.arabic_name }}</div>
             </div>
             <div class="card-body">
                 {% for v in translations %}
@@ -98,7 +98,7 @@
                     {% else %}
                     <div class="font-normal">
                         <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
-                        <span lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
+                        <span class="translations-text" lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
                     </div>
                     {% endif %}
                 </p>
