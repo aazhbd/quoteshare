@@ -26,11 +26,13 @@
             <p class="my-2">Selected Translations</p>
 
             <div class="list-group">
-                <a href="#" class="list-group-item card-content">Original Text</a>
-                <a href="#" class="list-group-item card-content">English - Abdullah Yusuf Ali
-                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </a>
-                <a href="#" class="list-group-item card-content">Bangla 1</a>
+                {% for author in selected_authors %}
+                    <a href="#" class="list-group-item card-content">
+                        {{author}}{% if 1 != author.id %}
+                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        {% endif %}
+                    </a>
+                {% endfor %}
             </div>
 
             <p class="my-2">Translations
@@ -39,22 +41,22 @@
             <div class="collapse dont-collapse-sm" id="languageCollapse">
                 <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
                     {% for li in language_info %}
-                    <div class="card">
-                        <div class="card-header teal z-depth-1 card-content" role="tab" id="heading{{li.id}}">
-                            <h5 class="mb-0 py-1 white-text panel-title" data-toggle="collapse" href="#collapse{{li.id}}" aria-expanded="false" aria-controls="collapse{{li.id}}">
-                                {{li.name}}
-                            </h5>
+                        <div class="card">
+                            <div class="card-header teal z-depth-1 card-content" role="tab" id="heading{{li.id}}">
+                                <h5 class="mb-0 py-1 white-text panel-title" data-toggle="collapse" href="#collapse{{li.id}}" aria-expanded="false" aria-controls="collapse{{li.id}}">
+                                    {{li.name}}
+                                </h5>
+                            </div>
+                            <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
+                                {% for ai in author_info %}{% if ai.alang == li %}
+                                    <a class="author-name" id="{{ai.id}}"><div class="card-body card-content">{{ai.name}}</div></a>
+                                {% endif %}{% endfor %}
+                            </div>
                         </div>
-                        <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
-                        {% for ai in author_info %}{% if ai.alang == li %}
-                        <div class="card-body card-content">{{ai.name}}</div>
-                        {% endif %}{% endfor %}
-                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
-    </div>
 
     <div class="col-lg-9">
         <div class="card card-outline-secondary my-4">
