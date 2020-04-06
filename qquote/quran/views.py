@@ -12,10 +12,13 @@ class HomeView(generic.ListView):
     template_name = 'home.html'
 
 
-class ChapterView(generic.TemplateView):
+class ChapterView(generic.ListView):
+    model = Verse
+    context_object_name = 'translations'
     template_name = "chapter.html"
 
     def get(self, request, *args, **kwagrs):
+        self.object_list = self.get_queryset()
         self.chapter_number = kwagrs['chapter']
         self.author_ids = [1]
         authors = request.GET.get("t", None)
@@ -26,13 +29,13 @@ class ChapterView(generic.TemplateView):
         else:
             self.selected_authors = Author.objects.filter(pk=1)
 
+        v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number)
+        self.object_list = self.object_list.filter(v).order_by('number', 'author')
         return self.render_to_response(self.get_context_data())
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         data['selected_authors'] = self.selected_authors
-
-        data['translations'] = Verse.objects.filter(Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number)).order_by('number', 'author')
 
         chapter_info = Chapter.objects.filter(number=self.chapter_number)
         for ci in chapter_info:
