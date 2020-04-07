@@ -39,10 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
     'quran',
     'baton.autodiscover',
 ]
@@ -83,6 +79,12 @@ WSGI_APPLICATION = 'qquote.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/home/express/Downloads/quran_db.cnf',
+        },
+    },
+    'default-sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'quran_db.db'),
     }
@@ -133,25 +135,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
 )
-
-SITE_ID = 1
-
-# Provider specific settings
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
-        }
-    }
-}
 
 
 BATON = {

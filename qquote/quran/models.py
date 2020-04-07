@@ -33,7 +33,7 @@ class Author(models.Model):
 
 class Chapter(models.Model):
     id = models.AutoField(primary_key=True)
-    number = models.IntegerField(null=True, blank=True)
+    number = models.IntegerField(null=False, blank=False)
     english_name = models.CharField(max_length=1000, blank=False)
     arabic_name = models.CharField(max_length=1000, blank=False)
     transliteration = models.CharField(max_length=1000, blank=False)
@@ -49,7 +49,7 @@ class Chapter(models.Model):
 
 class Verse(models.Model):
     id = models.AutoField(primary_key=True)
-    number = models.IntegerField(blank=False)
+    number = models.IntegerField(null=False, blank=False)
 
     vtext = models.CharField(max_length=10000, blank=False)
 

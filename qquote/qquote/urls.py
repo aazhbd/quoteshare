@@ -12,5 +12,4 @@ urlpatterns = [
     path('<int:chapter>/<int:verse>/', views.VerseView.as_view(), name='verse'),
     path('admin/', admin.site.urls),
     path('baton/', include('baton.urls')),
-    path('accounts/', include('allauth.urls')),
 ]
