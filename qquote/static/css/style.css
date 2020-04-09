@@ -75,12 +75,13 @@ a{
 
 .panel-title {
   position: relative;
+  font-weight: bold;
 }
 
 .panel-title::after {
   content: "\f107";
   color: #fff;
-  top: -2px;
+  top: 2px;
   right: 0px;
   position: absolute;
   font-family: 'Font Awesome\ 5 Free';
