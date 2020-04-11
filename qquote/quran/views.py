@@ -17,9 +17,9 @@ class ChapterView(generic.ListView):
     context_object_name = 'translations'
     template_name = "chapter.html"
 
-    def get(self, request, *args, **kwagrs):
+    def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
-        self.chapter_number = kwagrs['chapter']
+        self.chapter_number = kwargs['chapter']
         self.author_ids = [1]
         authors = request.GET.get("t", None)
         if authors:
@@ -45,8 +45,8 @@ class ChapterView(generic.ListView):
         distinct_authors = [dauthor.author.id for dauthor in dista]
         distinct_langauges = [dauthor.author.alang.id for dauthor in dista]
 
-        data['author_info'] = Author.objects.filter(id__in=distinct_authors)
-        data['language_info'] = Language.objects.filter(id__in=distinct_langauges)
+        data['author_info'] = Author.objects.filter(id__in=distinct_authors).order_by('name')
+        data['language_info'] = Language.objects.filter(id__in=distinct_langauges).order_by('name')
         return data
 
 
@@ -55,10 +55,10 @@ class VerseView(generic.ListView):
     context_object_name = 'verse'
     template_name = 'verse.html'
 
-    def get(self, request, *args, **kwagrs):
+    def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
-        self.chapter_number = kwagrs['chapter']
-        self.verse_number = kwagrs['verse']
+        self.chapter_number = kwargs['chapter']
+        self.verse_number = kwargs['verse']
 
         self.author_ids = [1]
         authors = request.GET.get("t", None)
@@ -70,7 +70,12 @@ class VerseView(generic.ListView):
         else:
             self.selected_authors = Author.objects.filter(pk=1)
 
-        v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number) & Q(number=self.verse_number)
+        self.to_verse = kwargs.get('toverse', None)
+        if self.to_verse:
+            v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number) & Q(number__gte=self.verse_number) & Q(number__lte=self.to_verse)
+        else:
+            v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number) & Q(number=self.verse_number)
+
         self.object_list = self.object_list.filter(v).order_by('number', 'author')
         context = self.get_context_data()
         return self.render_to_response(context)
