@@ -5,6 +5,30 @@
 {% block scripttags %}
 <script>
     $(document).ready(function() {
+        $('#toverse').val({{ chapter_info.total_verses }});
+        var path = window.location.pathname.split('/').filter(function(v){return v!==''});
+        if(path[1]){
+            var ranges = path[1].indexOf("-") >= 0 ? path[1].split('-') : path[1];
+            $('#fromverse').val(ranges.length > 1 ? ranges[0] : path);
+            $('#toverse').val(ranges.length > 1 ? ranges[1] : {{ chapter_info.total_verses }});
+        }
+
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 1,
+            max: {{ chapter_info.total_verses }},
+            values: [ $('#fromverse').val(), $('#toverse').val() ],
+            slide: function( event, ui ) {
+                $('#fromverse').val('' + ui.values[0]);
+                $('#toverse').val('' + ui.values[1]);
+            }
+        });
+
+        $("#goverse").click(function () {
+            var newpara = $('#fromverse').val() + "-" + $('#toverse').val();
+            if(path[0]) window.location.pathname = path[0] + "/" + newpara;
+        });
+
         $(".author-name").click(function() {
             var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',').length;
             if(para >= 5) {
@@ -21,6 +45,7 @@
             }
             return false;
         });
+
         $(".closeTranslation").click(function () {
             var removetrans = $(this).attr('id');
             var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',');
@@ -42,6 +67,20 @@
     <div class="container text-center p-2 pt-4 mx-auto">
         <h2 class="h1-responsive arabic-amiri">{{chapter_info.arabic_name}}</h2>
         <p>Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} | Total Verses {{ chapter_info.total_verses }} | English name: {{chapter_info.english_name}}</p>
+        <p>
+            Go to Verse: <div id="slider-range"></div>
+            <select id="fromverse">
+            {% for _ in ""|ljust:chapter_info.total_verses %}
+                <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+            {% endfor %}
+            </select> -
+            <select id="toverse">
+                {% for _ in ""|ljust:chapter_info.total_verses %}
+                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                {% endfor %}
+            </select>
+            <input id="goverse" type="button" value="Go">
+        </p>
     </div>
 </header>
 
