@@ -65,22 +65,32 @@
 
 <header class="bg-primary teal lighten-1 white-text">
     <div class="container text-center p-2 pt-4 mx-auto">
-        <h2 class="h1-responsive arabic-amiri">{{chapter_info.arabic_name}}</h2>
-        <p>Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} | Total Verses {{ chapter_info.total_verses }} | English name: {{chapter_info.english_name}}</p>
-        <p>
-            Go to Verse: <div id="slider-range"></div>
-            <select id="fromverse">
-            {% for _ in ""|ljust:chapter_info.total_verses %}
-                <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-            {% endfor %}
-            </select> -
-            <select id="toverse">
-                {% for _ in ""|ljust:chapter_info.total_verses %}
-                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                {% endfor %}
-            </select>
-            <input id="goverse" type="button" value="Go">
-        </p>
+
+    <div class="text-center"><span class="h3-responsive">{{ chapter_info.number }}: {{chapter_info.transliteration}} </span>  <span class="h2-responsive arabic-amiri">{{chapter_info.arabic_name}}</span></div>
+
+            <div class="row d-flex justify-content-center form-inline banner-element">
+                <div class="input-group col-lg-2 col-md-2 col-sm-2 col-2">{{chapter_info.english_name}}</div>
+
+                <div class="input-group col-lg-7 col-md-6 col-sm-6 col-10">
+                    <div class="ml-2 mr-2 w-100" id="slider-range"></div>
+                </div>
+
+                <div class="input-group col-lg-2 col-md-3 col-sm-4 col-6">
+                    <select id="fromverse" class="browser-default custom-select custom-select-sm" aria-label="FromVerse">
+                        {% for _ in ""|ljust:chapter_info.total_verses %}
+                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="toverse"  class="browser-default custom-select custom-select-sm ml-1" aria-label="ToVerse">
+                        {% for _ in ""|ljust:chapter_info.total_verses %}
+                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-md btn-default m-0 px-3 py-2 z-depth-0 waves-effect" id="goverse" type="button" value="Go"><i class="far fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
     </div>
 </header>
 

@@ -28,12 +28,13 @@ class ChapterView(generic.ListView):
         else:
             self.selected_authors = Author.objects.filter(pk=1)
 
-        self.verse_number = kwargs.get('verse', None)
-        self.to_verse = kwargs.get('toverse', None)
+        self.verse_number = kwargs.get('verse', 0)
+        self.to_verse = kwargs.get('toverse', 0)
+        self.to_verse = self.verse_number if self.to_verse < self.verse_number else self.to_verse
 
-        if self.to_verse and self.verse_number:
+        if self.to_verse > 0 and self.verse_number > 0:
             v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number) & Q(number__gte=self.verse_number) & Q(number__lte=self.to_verse)
-        elif self.verse_number:
+        elif self.verse_number > 0:
             v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number) & Q(number=self.verse_number)
         else:
             v = Q(author__id__in=self.author_ids) & Q(chapter=self.chapter_number)

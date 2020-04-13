@@ -93,6 +93,13 @@ a{
   font-weight: 900;
 }
 
+.banner-element {
+  color: #fff;
+  border: 0px;
+  background-color: transparent;
+  min-height: 26px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
