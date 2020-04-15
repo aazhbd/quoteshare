@@ -40,18 +40,18 @@
             </li>
         </ul>
 
-        <form class="form-inline">
-            <select class="form-control mr-sm-2 custom-select">
-                {% for lang in language_info %}
-                    {% if lang.iso_code == 'en' %}
-                    <option selected>{{ lang.iso_code|upper }}</option>
-                    {% else %}
-                    <option>{{ lang.iso_code|upper }}</option>
-                    {% endif %}
-                {% endfor %}
+        <form class="form-inline" method="get" action="/search">
+            <select name="lang" class="form-control custom-select">
+            {% for lang in language_info %}
+                {% if lang.iso_code == 'en' %}
+                <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
+                {% else %}
+                <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
+                {% endif %}
+            {% endfor %}
             </select>
             <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control search-box" name="q" placeholder="&#xe8b6; Search" type="text" />
                 <i class="fas fa-search text-white mr-sm-2" aria-hidden="true"></i>
             </div>
         </form>

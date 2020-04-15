@@ -85,12 +85,12 @@ a{
   right: 0px;
   position: absolute;
   font-family: 'Font Awesome\ 5 Free';
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .panel-title[aria-expanded="true"]::after {
   content: "\f106";
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .banner-element {
@@ -98,6 +98,13 @@ a{
   border: 0px;
   background-color: transparent;
   min-height: 26px;
+}
+
+.search-box {
+  font-family: Roboto, 'Font Awesome\ 5 Free';
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
 }
 
 .footer {
