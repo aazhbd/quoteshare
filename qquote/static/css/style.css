@@ -100,11 +100,22 @@ a{
   min-height: 26px;
 }
 
+.search-box::-webkit-input-placeholder { color: white; }  /* WebKit, Blink, Edge */
+.search-box:-moz-placeholder { color: white; }  /* Mozilla Firefox 4 to 18 */
+.search-box::-moz-placeholder { color: white; }  /* Mozilla Firefox 19+ */
+.search-box:-ms-input-placeholder { color: white; }  /* Internet Explorer 10-11 */
+.search-box::-ms-input-placeholder { color: white; }  /* Microsoft Edge */
+
 .search-box {
-  font-family: Roboto, 'Font Awesome\ 5 Free';
+  color: white;
+  font-family: Arial, 'Font Awesome\ 5 Free';
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
+}
+
+.search-box:focus {
+  color: white;
 }
 
 .footer {
