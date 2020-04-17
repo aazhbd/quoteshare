@@ -62,7 +62,11 @@ class SearchView(generic.ListView):
         if search_lang:
             v &= Q(vlang__iso_code=search_lang)
         self.object_list = self.object_list.filter(v)
-        return self.render_to_response(self.get_context_data())
+        data = self.get_context_data()
+        data['result_count'] = self.object_list.count()
+        data['result_keyword'] = search_key if search_key != "**" else "empty"
+        data['result_lang'] = search_lang
+        return self.render_to_response(data)
 
 
 

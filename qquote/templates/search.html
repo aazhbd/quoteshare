@@ -9,7 +9,7 @@
 
 <header class="bg-primary teal lighten-1 white-text">
     <div class="container text-center p-2 pt-4 mx-auto">
-        <h3 class="heading h3-responsive">Search result for : </h3>
+        <h3 class="heading h3-responsive">Search result for : {{ result_keyword }}</h3>
         <div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination pg-blue justify-content-center">
@@ -23,7 +23,10 @@
                     {% endif %}
 
                     <li class="page-item">
-                        <a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a>
+                        <a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">Total {{ result_count }} {% if result_lang %}in Language {{ result_lang|upper }}{% endif %}</a>
                     </li>
                     {% if page_obj.has_next %}
                         <li class="page-item">
