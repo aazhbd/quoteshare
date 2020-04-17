@@ -1,5 +1,5 @@
 {% extends "main.html" %}
-{% load static %}{% load i18n %}
+{% load static %}{% load i18n %}{% load custom_tags %}
 {% block title %} Home {% endblock %}
 
 {% block scripttags %}
@@ -9,7 +9,7 @@
 
 <header class="bg-primary teal lighten-1 white-text">
     <div class="container text-center p-2 pt-4 mx-auto">
-        <h2 class="heading h2-responsive">Search result for : </h2>
+        <h3 class="heading h3-responsive">Search result for : </h3>
         <div>
             <form class="form-inline bg-primary teal lighten-1 ml-auto p-0 row" method="get" action="/search/">
                 <select name="lang" class="form-control custom-select mr-3 col-lg-2">
@@ -45,8 +45,8 @@
                     <div class="pagination">
                         <span class="step-links">
                             {% if page_obj.has_previous %}
-                                <a href="?page=1">&laquo; first</a>
-                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                <a href="?{% url_replace request 'page' 1 %}">&laquo; first</a>
+                                <a href="?{% url_replace request 'page' page_obj.previous_page_number %}">previous</a>
                             {% endif %}
 
                             <span class="current">
@@ -54,15 +54,15 @@
                             </span>
 
                             {% if page_obj.has_next %}
-                                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                <a href="?{% url_replace request 'page' page_obj.next_page_number %}">next</a>
+                                <a href="?{% url_replace request 'page' page_obj.paginator.num_pages %}">last &raquo;</a>
                             {% endif %}
                         </span>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    {% for v in results %}
+                    {% for v in page_obj %}
                         <li class="media my-4">
                             <div class="media-body">
                                 <h4 class="mt-0 mb-2 font-weight-bold"><a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">Chapter {{v.chapter.number}}. {{v.chapter.english_name}} ({{v.chapter.number}}:{{v.number}})</a></h4>
