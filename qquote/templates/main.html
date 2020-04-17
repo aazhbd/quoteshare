@@ -39,22 +39,23 @@
                 </div>
             </li>
         </ul>
-
-        <form class="form-inline" method="get" action="/search">
-            <select name="lang" class="form-control custom-select">
-            {% for lang in language_info %}
-                {% if lang.iso_code == 'en' %}
-                <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
-                {% else %}
-                <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
-                {% endif %}
-            {% endfor %}
+        <form class="form-inline bg-primary teal lighten-1 ml-auto p-0" method="get" action="/search/">
+            <select name="lang" class="form-control custom-select mr-3">
+                {% for lang in language_info %}
+                    {% if lang.iso_code == 'en' %}
+                        <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
+                    {% else %}
+                        <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
+                    {% endif %}
+                {% endfor %}
             </select>
             <div class="md-form my-0">
-                <input class="form-control search-box" name="q" placeholder="&#xe8b6; Search" type="text" />
-                <i class="fas fa-search text-white mr-sm-2" aria-hidden="true"></i>
+                <i class="fas fa-search text-white" aria-hidden="true"></i>
+                <input class="form-control mr-sm-2 ml-3 w-75 border-0" name="q" type="text" placeholder="Search"
+                       aria-label="Search">
             </div>
         </form>
+
     </div>
 </nav>
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q, Count, Min, Max, Sum
 from quran.models import *
-
+from django.core.paginator import Paginator
 from django.views import generic
 
 class ChapterView(generic.ListView):
@@ -45,5 +45,31 @@ class ChapterView(generic.ListView):
             data['chapter_info'] = ci
 
         return data
+
+
+class SearchView(generic.ListView):
+    model = Verse
+    template_name = 'search.html'
+    context_object_name = 'results'
+
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        search_key = request.GET.get("q", "**")
+        search_lang = request.GET.get("lang", None)
+
+        v = Q(vtext__icontains=search_key)
+        if search_lang:
+            v &= Q(vlang__iso_code=search_lang)
+        self.object_list = self.object_list.filter(v)
+
+        paginator = Paginator(self.object_list, 25)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = self.get_context_data()
+        context['page_obj'] = page_obj
+        return self.render_to_response(context)
+
+
 
 

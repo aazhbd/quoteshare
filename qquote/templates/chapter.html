@@ -9,8 +9,8 @@
         var path = window.location.pathname.split('/').filter(function(v){return v!==''});
         if(path[1]){
             var ranges = path[1].indexOf("-") >= 0 ? path[1].split('-') : path[1];
-            $('#fromverse').val(ranges.length > 1 ? ranges[0] : path);
-            $('#toverse').val(ranges.length > 1 ? ranges[1] : {{ chapter_info.total_verses }});
+            $('#fromverse').val(Array.isArray(ranges) && ranges.length > 1 ? ranges[0] : path[1]);
+            $('#toverse').val(Array.isArray(ranges) && ranges.length > 1 ? ranges[1] : {{ chapter_info.total_verses }});
         }
 
         $( "#slider-range" ).slider({
