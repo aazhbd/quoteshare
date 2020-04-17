@@ -118,8 +118,8 @@ a{
   color: white;
 }
 
-.page-link a{
-  color: white;
+.page-link {
+  color: white !important;
 }
 
 .footer {
