@@ -1,0 +1,88 @@
+{% extends "main.html" %}
+{% load static %}{% load i18n %}{% load custom_tags %}
+{% block title %} Home {% endblock %}
+
+{% block scripttags %}
+{% endblock %}
+
+{% block content %}
+
+<header class="bg-primary teal lighten-1 white-text">
+    <div class="container text-center p-2 pt-4 mx-auto">
+        <h3 class="heading h3-responsive">Search result for : {{ result_keyword }}</h3>
+        <div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" aria-label="First" href="?{% url_replace request 'page' 1 %}">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" aria-label="First" href="?{% url_replace request 'page' page_obj.previous_page_number %}"><span aria-hidden="true">&laquo;</span> Previous</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item">
+                        <a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">Total {{ result_count }} {% if result_lang %}in Language {{ result_lang|upper }}{% endif %}</a>
+                    </li>
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a href="?{% url_replace request 'page' page_obj.next_page_number %}" class="page-link" aria-label="Next">Next<span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                        <li class="page-item">
+                            <a href="?{% url_replace request 'page' page_obj.paginator.num_pages %}" class="page-link" aria-label="Last">Last</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid page-container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="col-lg-12">
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                    Search results
+                </div>
+
+                <div class="card-body">
+                    {% for v in page_obj %}
+                    <li class="media my-4">
+                        <div class="media-body">
+                            <h4 class="mt-0 mb-2 font-weight-bold"><a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{ v.chapter.english_name }} {{v.chapter.number}}:{{v.number}}</a></h4>
+                            {% if v.author.id == 1 %}
+                                <a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;<small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
+                                <div class="arabic-text arabic-amiri font-large">
+                                    <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                                </div>
+                            {% else %}
+                                <div class="font-normal">
+                                    <a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
+                                    <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </li>
+                    <hr>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,130 @@
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 200px;
+  height: 100%;
+}
+
+a{
+  color: teal;
+}
+
+
+@media (min-width: 992px) {
+  .collapse.dont-collapse-sm {
+    display: block;
+    height: auto !important;
+    visibility: visible;
+  }
+}
+
+
+.arabic-amiri {
+  font-family: 'Amiri', serif;
+}
+
+.arabic-text {
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: right;
+  line-height: 4rem;
+}
+
+.translation-text-right {
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: right;
+}
+
+@font-face {
+  font-family: "Noto Mono";
+  src: url('/static/fonts/NotoMono-Regular.ttf');
+}
+
+.translations-text {
+  font-family: "Noto Mono";
+  font-stretch: condensed;
+  letter-spacing: -1px;
+  font-size: 1.1rem;
+}
+
+.page-container {
+  padding: 0 4%;
+}
+
+.font-large {
+  font-size: 25px;
+}
+
+.font-normal {
+  font-size: 20px;
+}
+
+.content {
+  padding: 40px;
+}
+
+.card-content {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.panel-title {
+  position: relative;
+  font-weight: bold;
+}
+
+.panel-title::after {
+  content: "\f107";
+  color: #fff;
+  top: 2px;
+  right: 0px;
+  position: absolute;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 800;
+}
+
+.panel-title[aria-expanded="true"]::after {
+  content: "\f106";
+  font-weight: 800;
+}
+
+.banner-element {
+  color: #fff;
+  border: 0px;
+  background-color: transparent;
+  min-height: 26px;
+}
+
+.search-box::-webkit-input-placeholder { color: white; }  /* WebKit, Blink, Edge */
+.search-box:-moz-placeholder { color: white; }  /* Mozilla Firefox 4 to 18 */
+.search-box::-moz-placeholder { color: white; }  /* Mozilla Firefox 19+ */
+.search-box:-ms-input-placeholder { color: white; }  /* Internet Explorer 10-11 */
+.search-box::-ms-input-placeholder { color: white; }  /* Microsoft Edge */
+
+.search-box {
+  color: white;
+  font-family: Arial, 'Font Awesome\ 5 Free';
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+
+.search-box:focus {
+  color: white;
+}
+
+.page-link {
+  color: white !important;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  float: none;
+  margin-top: 10px;
+}
