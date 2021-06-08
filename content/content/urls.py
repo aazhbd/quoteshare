@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 from quran import views
 
 urlpatterns = [
-    path('django-admin/', admin.site.urls),
+    path('site-admin/', admin.site.urls),
 
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
