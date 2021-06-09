@@ -1,8 +1,8 @@
 {% extends "main.html" %}
-{% load wagtailcore_tags %}{% load static %}{% load i18n %}
+{% load static i18n wagtailcore_tags wagtailimages_tags %}
 {% block title %} Articles {% endblock %}
 
-{% block body_class %}Articles{% endblock %}
+{% block body_class %}t-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block description %} Quran, All translations in serveral languages, Browsing the full Quran in the Original Text and its translations in various languages by various renowned scholars around the globe. A large collection of translations from various authors have been included in this site to compare the meanings and understand. Having discussion by adding Comments, Questions, Translations, Explanations, History of Verses in order to better help in understanding the message of Quran. Users may register to contribute to any of the verses with the help of references from available materials. Ability to search within the verses of Quran, its translations as well as comments in many languages. All texts, translations and comments of users can be searched efficiently to provide relevant results.{% endblock %}
 {% block keywords %} Quran, translations, several languages {% endblock %}
@@ -17,7 +17,12 @@
         {% endif %}
 
         <article class="p-5">
-            {{ page.body|richtext }}
+            <h3>{{ page.title }}</h3>
+            <h6>{{ page.top_title }}</h6>
+
+            {{ page.body }}
+
+            <p class="post-meta">By {{ page.owner }} at {{ page.first_published_at }}</p>
         </article>
 
     </div>
