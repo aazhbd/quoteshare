@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('', TemplateView.as_view(template_name='home.html'), name='index'),
     path('info', TemplateView.as_view(template_name='info.html'), name='info'),
-    path('search/', views.SearchView.as_view(), name='search'),
+    path('qsearch/', views.SearchView.as_view(), name='qsearch'),
 
     path('<int:chapter>/', views.ChapterView.as_view(), name='chapter'),
     path('<int:chapter>/<int:verse>/', views.ChapterView.as_view(), name='verse'),
