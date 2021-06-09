@@ -5,5 +5,9 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-{{ page.body|richtext }}
+<header class="bg-primary teal lighten-1 white-text">
+    <div class="container text-center p-2 pt-4 mx-auto">
+        {{ page.body|richtext }}
+    </div>
+</header>
 {% endblock %}
