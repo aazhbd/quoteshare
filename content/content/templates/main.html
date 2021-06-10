@@ -1,4 +1,4 @@
-{% load static %}
+{% load static custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +49,7 @@
             <input id="selected-chapter" list="select-chapters" value="" placeholder="Jump to Chapter" class="my-0 pl-2 form-control">
             <datalist id="select-chapters" class="w-100">
                 {% for m in chapters %}
-                    <option>{{ m.number }} - {{ m.transliteration }}</option>
+                    <option>{{ m.number }} - {{ m.transliteration|simplify }}</option>
                 {% endfor %}
             </datalist>
         </div>
