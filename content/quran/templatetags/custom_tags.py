@@ -13,7 +13,7 @@ def url_replace(request, field, value):
 @register.filter
 def simplify(value):
     import unicodedata
-    return unicodedata.normalize('NFC', value)\
+    return unicodedata.normalize('NFKC', value)\
         .encode('ascii', 'ignore')\
         .decode("utf-8")\
         .replace('\'', '').replace('`', '')
