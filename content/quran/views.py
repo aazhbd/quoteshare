@@ -13,14 +13,15 @@ class ChapterView(generic.ListView):
         self.object_list = self.get_queryset()
         self.chapter_number = kwargs.get('chapter', 1)
 
-        self.author_ids = [1]
+        original_text = Author.objects.filter(name='Original Text')
+        self.author_ids = [original_text[0].id]
         authors = request.GET.get("t", None)
         if authors:
             author_ids = authors.split(',')
             self.author_ids = self.author_ids + author_ids
             self.selected_authors = Author.objects.filter(pk__in=self.author_ids)
         else:
-            self.selected_authors = Author.objects.filter(pk=1)
+            self.selected_authors = Author.objects.filter(pk=original_text[0].id)
 
         self.verse_number = kwargs.get('verse', 0)
         self.to_verse = kwargs.get('toverse', 0)

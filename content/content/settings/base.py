@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'content.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'content_db',
+        'NAME': 'quran_db',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
