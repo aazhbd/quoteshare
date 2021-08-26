@@ -11,7 +11,7 @@ class LanguageAdmin(ModelAdmin):
     exclude_from_explorer = False
     list_display = ('name', 'iso_code')
     list_filter = ('name',)
-    search_fields = ('name')
+    search_fields = ('name', )
 
 class AuthorAdmin(ModelAdmin):
     model = Author
@@ -22,7 +22,7 @@ class AuthorAdmin(ModelAdmin):
     exclude_from_explorer = False
     list_display = ('name', 'alang')
     list_filter = ('name',)
-    search_fields = ('name')
+    search_fields = ('city', 'country', 'name', )
 
 class ChapterAdmin(ModelAdmin):
     model = Chapter
