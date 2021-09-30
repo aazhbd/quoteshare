@@ -6,8 +6,8 @@ def chapter_processor(request):
 
 
 def menu_processor(request):
-    data = {}
+    info = {}
     distincts = Verse.objects.values('author').distinct()
-    data['author_info'] = Author.objects.filter(id__in=list(distincts.values_list('author', flat=True))).order_by('name')
-    data['language_info'] = Language.objects.filter(id__in=list(data['author_info'].values_list('alang', flat=True))).order_by('name')
-    return data
+    info['author_info'] = Author.objects.filter(id__in=list(distincts.values_list('author', flat=True))).order_by('name')
+    info['language_info'] = Language.objects.filter(id__in=list(info['author_info'].values_list('alang', flat=True))).order_by('name')
+    return info
