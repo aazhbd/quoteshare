@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Language(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=70, blank=False)
@@ -63,4 +64,3 @@ class Verse(models.Model):
 
     class Meta:
         pass
-
