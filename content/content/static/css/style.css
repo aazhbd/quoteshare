@@ -42,7 +42,7 @@ a{
 
 @font-face {
   font-family: "Noto Mono";
-  src: url('/static/fonts/NotoMono-Regular.ttf');
+  src: url('../fonts/NotoMono-Regular.ttf');
 }
 
 .translations-text {
@@ -50,6 +50,20 @@ a{
   font-stretch: condensed;
   letter-spacing: -1px;
   font-size: 1.1rem;
+}
+
+.navbar {
+  background-image: linear-gradient(20deg, rgba(0, 172, 193, 0.4), rgba(0, 137, 123, 0.4)), url("../images/bg-top.jpg");
+  background-size: cover;
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+}
+
+.title-banner {
+  background-image: linear-gradient(20deg, rgba(0, 172, 193, 0.4), rgba(0, 137, 123, 0.4)), url("../images/bg-top.jpg");
+  background-size: cover;
 }
 
 .page-container {
