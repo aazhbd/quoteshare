@@ -147,19 +147,18 @@
             </div>
             <div class="card-body">
                 {% for v in translations %}
-                <div>
                     {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
-                    <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;<small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
-                    <div class="arabic-text arabic-amiri font-large">
+                    {% if not forloop.first %}<hr/>{% endif %}
+                    <div class="arabic-text arabic-amiri font-large my-2">
+                        <a class="verse-number rounded-circle p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
                         <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
                     </div>
                     {% else %}
                     <div class="font-normal">
-                        <a href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a> <small class="text-muted">{{v.author.alang}} - {{v.author.name}}</small>
-                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}}</span>
+                        <a class="verse-number rounded-circle p-2 my-3" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                     </div>
                     {% endifequal %}
-                </div>
                 {% endfor %}
             </div>
         </div>

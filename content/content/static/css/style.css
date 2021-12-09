@@ -48,8 +48,24 @@ a{
 .translations-text {
   font-family: "Noto Mono";
   font-stretch: condensed;
+  line-height: 2rem;
+}
+
+.translation-name {
+  font-family: Calibri;
+  font-size: 0.8rem;
+  color: #1a9bcb;
+  font-style: italic;
+}
+
+.verse-number {
+  font-family: Consolas, monaco, monospace;
+  font-size: 1rem;
   letter-spacing: -1px;
-  font-size: 1.1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: #f4fffd;
+  height: 20px;
+  width: 10px;
 }
 
 .navbar {
@@ -77,11 +93,11 @@ a{
 }
 
 .font-large {
-  font-size: 25px;
+  font-size: 2rem;
 }
 
 .font-normal {
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .content {
