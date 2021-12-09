@@ -64,6 +64,12 @@ a{
 .title-banner {
   background-image: linear-gradient(20deg, rgba(0, 184, 212, 0.4), rgba(0, 191, 165, 0.6)), url("../images/bg-top.jpg");
   background-size: cover;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.cyan8 {
+  background-color: #00838F;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .page-container {
