@@ -53,7 +53,7 @@ a{
 }
 
 .navbar {
-  background-image: linear-gradient(20deg, rgba(0, 172, 193, 0.4), rgba(0, 137, 123, 0.4)), url("../images/bg-top.jpg");
+  background-image: linear-gradient(20deg, rgba(0, 184, 212, 0.4), rgba(0, 191, 165, 0.6)), url("../images/bg-top.jpg");
   background-size: cover;
 }
 
@@ -62,7 +62,7 @@ a{
 }
 
 .title-banner {
-  background-image: linear-gradient(20deg, rgba(0, 172, 193, 0.4), rgba(0, 137, 123, 0.4)), url("../images/bg-top.jpg");
+  background-image: linear-gradient(20deg, rgba(0, 184, 212, 0.4), rgba(0, 191, 165, 0.6)), url("../images/bg-top.jpg");
   background-size: cover;
 }
 
