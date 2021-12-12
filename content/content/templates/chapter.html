@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} {% endblock %}
+
+{% block scripttags %}
+<script>
+    $(document).ready(function() {
+        $('#toverse').val({{ chapter_info.total_verses }});
+        var path = window.location.pathname.split('/').filter(function(v){return v!==''});
+        if(path[1]){
+            var ranges = path[1].indexOf("-") >= 0 ? path[1].split('-') : path[1];
+            $('#fromverse').val(Array.isArray(ranges) && ranges.length > 1 ? ranges[0] : path[1]);
+            $('#toverse').val(Array.isArray(ranges) && ranges.length > 1 ? ranges[1] : {{ chapter_info.total_verses }});
+        }
+
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 1,
+            max: {{ chapter_info.total_verses }},
+            values: [ $('#fromverse').val(), $('#toverse').val() ],
+            slide: function( event, ui ) {
+                $('#fromverse').val('' + ui.values[0]);
+                $('#toverse').val('' + ui.values[1]);
+            }
+        });
+
+        $("#goverse").click(function () {
+            var newpara = $('#fromverse').val() + "-" + $('#toverse').val();
+            if(path[0]) window.location.pathname = path[0] + "/" + newpara;
+        });
+
+        $(".author-name").click(function() {
+            var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',').length;
+            if(para >= 5) {
+                return false;
+            }
+            var newtrans = $(this).attr('id');
+            if(window.location.search.indexOf(newtrans) >= 0) {
+                return false;
+            }
+            if(window.location.search.toLowerCase().indexOf("?t") >= 0) {
+                window.location.search += "," + newtrans;
+            } else {
+                window.location.search = '?t=' + newtrans;
+            }
+            return false;
+        });
+
+        $(".closeTranslation").click(function () {
+            var removetrans = $(this).attr('id');
+            var para = window.location.search.toLocaleLowerCase().substring(3, window.location.search.length).split(',');
+            var total = jQuery.grep(para, function(value) {
+                return value != removetrans;
+            });
+            if(total.length > 0)
+                window.location.search = '?t=' + total.join(",");
+            else window.location.search = "";
+            return false;
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+
+<header class="white-text title-banner">
+    <div class="container text-center p-2 pt-4 mx-auto">
+
+        <div class="text-center h4-responsive">
+            <span class="cyan rounded font-large m-3 p-2">{{ chapter_info.number }}</span>
+            <span class="m-3">{{ chapter_info.transliteration }}</span>
+            <span class="h3-responsive arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
+        </div>
+        <div class="row d-flex justify-content-center form-inline banner-element p-2">
+            <div class="input-group col-lg-1 col-md-1 col-sm-1 col-1">Verse:</div>
+            <div class="input-group col-lg-7 col-md-6 col-sm-6 col-10">
+                <div class="ml-2 mr-2 w-100" id="slider-range"></div>
+            </div>
+            <div class="input-group col-lg-2 col-md-3 col-sm-4 col-6">
+                <select id="fromverse" class="browser-default custom-select custom-select-sm" aria-label="FromVerse">
+                    {% for _ in ""|ljust:chapter_info.total_verses %}
+                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                    {% endfor %}
+                </select>
+                <select id="toverse" class="browser-default custom-select custom-select-sm pr-4" aria-label="ToVerse">
+                    {% for _ in ""|ljust:chapter_info.total_verses %}
+                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-md btn-default m-0 px-3 py-1 z-depth-0 waves-effect" id="goverse"
+                            type="button" value="Go"><i class="far fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid page-container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="col-lg-3">
+            <p class="my-2">Selected Translations</p>
+
+            <div class="list-group">
+                {% for author in selected_authors %}
+                    <a href="" class="list-group-item card-content">
+                        {{author}}{% ifnotequal author.alang|stringformat:"s" "Arabic" %}
+                            <button type="button" class="close" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true">×</span></button>
+                        {% endifnotequal %}
+                    </a>
+                {% endfor %}
+            </div>
+
+            <p class="my-2">Translations
+                <a class="d-lg-none d-xl-none" data-toggle="collapse" href="#languageCollapse" role="button" aria-expanded="false" aria-controls="languageCollapse">Expand</a>
+            </p>
+            <div class="collapse dont-collapse-sm" id="languageCollapse">
+                <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
+                    {% for li in language_info %}
+                    <div class="card">
+                        <div class="card-header shadow-5 z-depth-1 card-content cyan8" role="tab" id="heading{{li.id}}">
+                            <p class="m-0 white-text panel-title" data-toggle="collapse" href="#collapse{{li.id}}" aria-expanded="false" aria-controls="collapse{{li.id}}">{{li.name}}</p>
+                        </div>
+                        <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
+                        {% for ai in author_info %}{% if ai.alang == li %}
+                        <a class="author-name" id="{{ai.id}}"><div class="card-body card-content">{{ai.name}}</div></a>
+                        {% endif %}{% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    <div class="col-lg-9">
+        <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                <div class="float-left">
+                    <a href="/{{ chapter_info.number }}/">{{ chapter_info.number }}</a> | English Meaning: {{chapter_info.english_name}}
+                </div>
+                <div class="float-right arabic-amiri">{{ chapter_info.arabic_name }}</div>
+            </div>
+            <div class="card-body">
+                {% for v in translations %}
+                    {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
+                    {% if not forloop.first %}<hr/>{% endif %}
+                    <div class="arabic-text arabic-amiri font-large my-2">
+                        <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                        <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                    </div>
+                    {% else %}
+                    <div class="font-normal my-3">
+                        <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
+                    </div>
+                    {% endifequal %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
