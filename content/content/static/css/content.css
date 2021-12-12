@@ -174,3 +174,7 @@ a{
     float: none;
     margin-top: 10px;
 }
+
+.footer a {
+    color: white;
+}
