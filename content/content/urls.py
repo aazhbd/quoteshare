@@ -8,7 +8,18 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from django.views.generic import TemplateView
+from quran import views
+
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='home.html'), name='index'),
+    path('info', TemplateView.as_view(template_name='info.html'), name='info'),
+    path('qsearch/', views.SearchView.as_view(), name='qsearch'),
+
+    path('<int:chapter>/', views.ChapterView.as_view(), name='chapter'),
+    path('<int:chapter>/<int:verse>/', views.ChapterView.as_view(), name='verse'),
+    path('<int:chapter>/<int:verse>-<int:toverse>/', views.ChapterView.as_view(), name='verse'),
+
     path('django-admin/', admin.site.urls),
 
     path('admin/', include(wagtailadmin_urls)),
