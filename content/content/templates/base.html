@@ -24,15 +24,87 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="/">The Holy Quran</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu"
+                    aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <form class="md-form my-0 d-flex row w-100 justify-content-center align-content-center form-inline ml-auto p-0" method="get" action="/qsearch/">
+                    <i class="fas fa-search text-white my-0" aria-hidden="true"></i>
+                    <input class="form-control ml-3 w-75 search-box my-0" name="q" type="text" placeholder="Search a word in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
+
+                    <select name="lang" class="custom-select col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 my-0">
+                        {% for lang in language_info %}
+                            {% if lang.iso_code == 'en' %}
+                                <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
+                            {% else %}
+                                <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </form>
+
+                <div class="md-form my-0 mx-2 white">
+                    <input id="selected-chapter" list="select-chapters" value="" placeholder="Jump to Chapter" class="my-0 pl-2 form-control">
+                    <datalist id="select-chapters" class="w-100">
+                        {% for m in chapters %}
+                            <option>{{ m.number }} - {{ m.transliteration }}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </div>
+        </nav>
+
 
         {% block content %}{% endblock %}
 
+        <footer class="page-footer footer white-text pt-2 mb-0 w-100 title-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 py-4">
+                        <div class="mb-1 flex-center">
+                            <a class="fb-ic">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="tw-ic">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="gplus-ic">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="li-ic">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="ins-ic">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <a class="pin-ic">
+                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-4">
+                &copy; 2013 - 2021 <a href="mailto:aazhbd@yahoo.com">AAZ H</a>
+                | <a href="http://www.articulatedlogic.com/">ArticulatedLogic.com</a>
+                | &nbsp;<a href="/">Home</a>
+                | &nbsp;<a href="/info">Info</a>
+            </div>
+        </footer>
         <script type="text/javascript" src="{% static 'js/content.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
-
         {% block extra_js %}{% endblock %}
     </body>
 </html>
