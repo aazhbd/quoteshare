@@ -1,4 +1,18 @@
 
+@font-face {
+    font-family: "Noto Mono";
+    src: url('../fonts/NotoMono-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Amiri';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/Amiri-Regular.ttf');
+    unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+
 html {
     position: relative;
     min-height: 100%;
@@ -39,11 +53,6 @@ a{
     unicode-bidi: embed;
     text-align: right;
     float:right;
-}
-
-@font-face {
-    font-family: "Noto Mono";
-    src: url('../fonts/NotoMono-Regular.ttf');
 }
 
 .translations-text {
