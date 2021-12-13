@@ -2,7 +2,7 @@
 {% load static %}{% load i18n %}
 {% block title %} Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} {% endblock %}
 
-{% block scripttags %}
+{% block extra_js %}
 <script>
     $(document).ready(function() {
         $('#toverse').val({{ chapter_info.total_verses }});
@@ -66,7 +66,7 @@
 <header class="white-text title-banner">
     <div class="container text-center p-2 pt-4 mx-auto">
 
-        <div class="text-center h4-responsive">
+        <div class="text-center text-white h4-responsive">
             <span class="cyan rounded font-large m-3 p-2">{{ chapter_info.number }}</span>
             <span class="m-3">{{ chapter_info.transliteration }}</span>
             <span class="h3-responsive arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
@@ -74,7 +74,7 @@
         <div class="row d-flex justify-content-center form-inline banner-element p-2">
             <div class="input-group col-lg-1 col-md-1 col-sm-1 col-1">Verse:</div>
             <div class="input-group col-lg-7 col-md-6 col-sm-6 col-10">
-                <div class="ml-2 mr-2 w-100" id="slider-range"></div>
+                <div class="ms-2 me-2 w-100" id="slider-range"></div>
             </div>
             <div class="input-group col-lg-2 col-md-3 col-sm-4 col-6">
                 <select id="fromverse" class="browser-default custom-select custom-select-sm" aria-label="FromVerse">
@@ -82,7 +82,7 @@
                         <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
                     {% endfor %}
                 </select>
-                <select id="toverse" class="browser-default custom-select custom-select-sm pr-4" aria-label="ToVerse">
+                <select id="toverse" class="browser-default custom-select custom-select-sm pe-4" aria-label="ToVerse">
                     {% for _ in ""|ljust:chapter_info.total_verses %}
                         <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
                     {% endfor %}
@@ -120,28 +120,41 @@
             <p class="my-2">Translations
                 <a class="d-lg-none d-xl-none" data-toggle="collapse" href="#languageCollapse" role="button" aria-expanded="false" aria-controls="languageCollapse">Expand</a>
             </p>
-            <div class="collapse dont-collapse-sm" id="languageCollapse">
-                <div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist">
+            <div class="" id="languageCollapse-wrapper">
+                <div class="accordion accordion-flush" id="languageCollapse">
                     {% for li in language_info %}
-                    <div class="card">
-                        <div class="card-header shadow-5 z-depth-1 card-content cyan8" role="tab" id="heading{{li.id}}">
-                            <p class="m-0 white-text panel-title" data-toggle="collapse" href="#collapse{{li.id}}" aria-expanded="false" aria-controls="collapse{{li.id}}">{{li.name}}</p>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-heading{{li.id}}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse{{li.id}}" aria-expanded="false"
+                                        aria-controls="flush-collapse{{li.id}}">
+                                    {{ li.name }}
+                                </button>
+                            </h2>
+                            <div id="flush-collapse{{li.id}}" class="accordion-collapse collapse"
+                                 aria-labelledby="flush-heading{{li.id}}" data-bs-parent="#languageCollapse">
+                                <div class="accordion-body">
+                                    <div id="collapse{{ li.id }}" {% if 'English' == li.name %}class='show'
+                                         {% else %}class=''{% endif %} role="tabpanel"
+                                         aria-labelledby="heading{{ li.id }}" data-parent="#languageCollapse">
+
+                                        {% for ai in author_info %}{% if ai.alang == li %}
+                                            <p><a class="author-name" id="{{ai.id}}">{{ai.name}}</a></p>
+                                        {% endif %}{% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div id="collapse{{li.id}}"{% if 'English' == li.name %}class='collapse show'{% else %}class='collapse'{% endif %} role="tabpanel" aria-labelledby="heading{{li.id}}"  data-parent="#accordionEx23">
-                        {% for ai in author_info %}{% if ai.alang == li %}
-                        <a class="author-name" id="{{ai.id}}"><div class="card-body card-content">{{ai.name}}</div></a>
-                        {% endif %}{% endfor %}
-                        </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>
+
         </div>
 
     <div class="col-lg-9">
         <div class="card card-outline-secondary my-4">
             <div class="card-header">
-                <div class="float-left">
+                <div class="float-start">
                     <a href="/{{ chapter_info.number }}/">{{ chapter_info.number }}</a> | English Meaning: {{chapter_info.english_name}}
                 </div>
                 <div class="float-right arabic-amiri">{{ chapter_info.arabic_name }}</div>

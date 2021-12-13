@@ -22,14 +22,14 @@
             <div class="card card-outline-secondary my-2">
                 <div class="card-header font-weight-bold">
                     <a href="/{{ m.number }}/">
-                    <div class="float-left">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</div>
-                    <div class="float-right arabic-amiri">{{ m.arabic_name }}</div>
+                    <div class="float-start">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</div>
+                    <div class="float-end arabic-amiri">{{ m.arabic_name }}</div>
                     </a>
                 </div>
                 <div class="card-body">
                     <span class="font-small">English Name: {{ m.english_name }}</span>
                     <span class="font-small">Total Verse: {{ m.total_verses }}</span>
-                    <a href="/{{ m.number }}" class="font-large card-link float-right fas fa-chevron-circle-right"></a>
+                    <a href="/{{ m.number }}" class="font-large card-link float-end fas fa-chevron-circle-right"></a>
                 </div>
             </div>
         </div>
