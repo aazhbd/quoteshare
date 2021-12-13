@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
         <link rel="stylesheet" type="text/css" href="{% static 'css/content.css' %}">
-        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css' %}">
         {% block extra_css %}{% endblock %}
@@ -27,44 +27,41 @@
         {% wagtailuserbar %}
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-            <a class="navbar-brand" href="/">The Holy Quran</a>
+                <a class="navbar-brand" href="/">The Holy Quran</a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#mainMenu"
+                        aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
 
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#mainMenu"
-                    aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
+                    <form class="md-form my-0 d-flex row w-100 justify-content-center align-content-center form-inline ms-auto p-0" method="get" action="/qsearch/">
+                        <input class="form-control ms-3 w-75 search-box my-0" name="q" type="text" placeholder="Search a word in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
 
-            <div class="collapse navbar-collapse" id="mainMenu">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+                        <select name="lang" class="custom-select col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 my-0 rounded">
+                            {% for lang in language_info %}
+                                {% if lang.iso_code == 'en' %}
+                                    <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
+                                {% else %}
+                                    <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </form>
 
-                <form class="md-form my-0 d-flex row w-100 justify-content-center align-content-center form-inline ms-auto p-0" method="get" action="/qsearch/">
-                    <input class="form-control ms-3 w-75 search-box my-0" name="q" type="text" placeholder="Search a word in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
-
-                    <select name="lang" class="custom-select col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 my-0 rounded">
-                        {% for lang in language_info %}
-                            {% if lang.iso_code == 'en' %}
-                                <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
-                            {% else %}
-                                <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </form>
-
-                <div class="md-form my-0 mx-2 white">
-                    <input id="selected-chapter" list="select-chapters" value="" placeholder="Jump to Chapter" class="my-0 ps-2 form-control">
-                    <datalist id="select-chapters" class="w-100">
-                        {% for m in chapters %}
-                            <option>{{ m.number }} - {{ m.transliteration|simplify }}</option>
-                        {% endfor %}
-                    </datalist>
+                    <div class="md-form my-0 mx-2 white">
+                        <input id="selected-chapter" list="select-chapters" value="" placeholder="Jump to Chapter" class="my-0 ps-2 form-control">
+                        <datalist id="select-chapters" class="w-100">
+                            {% for m in chapters %}
+                                <option>{{ m.number }} - {{ m.transliteration|simplify }}</option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
                 </div>
-            </div>
-
             </div>
         </nav>
 
@@ -106,7 +103,7 @@
         </footer>
         <script type="text/javascript" src="{% static 'js/content.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-        <!-- <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script> -->
+        <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
         {% block extra_js %}{% endblock %}
