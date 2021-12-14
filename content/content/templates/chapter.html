@@ -67,9 +67,9 @@
     <div class="container text-center p-2 pt-4 mx-auto">
 
         <div class="text-center text-white h4-responsive">
-            <span class="cyan rounded font-large m-3 p-2">{{ chapter_info.number }}</span>
-            <span class="m-3">{{ chapter_info.transliteration }}</span>
-            <span class="h3-responsive arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
+            <span class="verse-number text-black rounded font-large m-3 p-2">{{ chapter_info.number }}</span>
+            <span class="m-3 fs-2">{{ chapter_info.transliteration }}</span>
+            <span class="h3-responsive fs-1 arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
         </div>
         <div class="row flex-row justify-content-center banner-element p-1" style="overflow: hidden">
             <div class="col-lg-1 col-md-1 col-sm-1 col-1 float-start p-2">Verse:</div>
@@ -85,8 +85,8 @@
                         <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
                     {% endfor %}
                 </select>
-                <button class="btn btn-md btn-default m-0 px-3 py-1 z-depth-0 waves-effect m-0 float-start" id="goverse" type="button" value="Go">
-                    <i class="fas fa-angle-double-right text-white" style="font-size: 20px"></i></button>
+                <button class="btn btn-md btn-default m-0 px-2 py-1 z-depth-0 waves-effect m-0 float-start" id="goverse" type="button" value="Go">
+                    <i class="fas fa-angle-double-right text-white" style="font-size: 19px"></i></button>
             </div>
         </div>
 
@@ -104,72 +104,75 @@
                 {% for author in selected_authors %}
                     <a href="" class="list-group-item card-content">
                         {{author}}{% ifnotequal author.alang|stringformat:"s" "Arabic" %}
-                            <button type="button" class="close" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true">×</span></button>
+                            <button type="button" class="close float-end" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true">x</span></button>
                         {% endifnotequal %}
                     </a>
                 {% endfor %}
             </div>
 
-            <p class="my-2">Translations
-                <a class="d-lg-none d-xl-none" data-toggle="collapse" href="#languageCollapse" role="button" aria-expanded="false" aria-controls="languageCollapse">Expand</a>
+            <p class="my-2 justify-content-center">Translations
+                <button class="btn btn-outline-info d-lg-none d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#langListCollapse" aria-expanded="false" aria-controls="langListCollapse">Expand</button>
             </p>
-            <div class="" id="languageCollapse-wrapper">
-                <div class="accordion accordion-flush" id="languageCollapse">
-                    {% for li in language_info %}
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-heading{{li.id}}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapse{{li.id}}" aria-expanded="false"
-                                        aria-controls="flush-collapse{{li.id}}">
-                                    {{ li.name }}
-                                </button>
-                            </h2>
-                            <div id="flush-collapse{{li.id}}" class="accordion-collapse collapse"
-                                 aria-labelledby="flush-heading{{li.id}}" data-bs-parent="#languageCollapse">
-                                <div class="accordion-body">
-                                    <div id="collapse{{ li.id }}" {% if 'English' == li.name %}class='show'
-                                         {% else %}class=''{% endif %} role="tabpanel"
-                                         aria-labelledby="heading{{ li.id }}" data-parent="#languageCollapse">
 
-                                        {% for ai in author_info %}{% if ai.alang == li %}
-                                            <p><a class="author-name" id="{{ai.id}}">{{ai.name}}</a></p>
-                                        {% endif %}{% endfor %}
-                                    </div>
-                                </div>
+            <div class="collapse show" id="langListCollapse">
+                <div class="accordion" id="languageCollapse">
+                    {% for li in language_info %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{li.id}}">
+                            <button
+                                    {% if 'English' == li.name %}class="accordion-button"
+                                    {% else %}class="accordion-button collapsed"{% endif %}
+                                    type="button"
+                                    data-mdb-toggle="collapse"
+                                    data-mdb-target="#collapse{{li.id}}"
+                                    aria-expanded="true"
+                                    aria-controls="collapse{{li.id}}">
+                                {{ li.name }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{li.id}}"
+                             {% if 'English' == li.name %}class="accordion-collapse collapse show"
+                             {% else %}class="accordion-collapse collapse"{% endif %}
+                             aria-labelledby="heading{{li.id}}" data-mdb-parent="#languageCollapse">
+                            <div class="accordion-body">
+                            {% for ai in author_info %}{% if ai.alang == li %}
+                                <a class="author-name" id="{{ai.id}}"><p class="w-100">{{ai.name}}</p></a>
+                            {% endif %}{% endfor %}
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
 
         </div>
 
-    <div class="col-lg-9">
-        <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-                <div class="float-start">
-                    <a href="/{{ chapter_info.number }}/">{{ chapter_info.number }}</a> | English Meaning: {{chapter_info.english_name}}
+        <div class="col-lg-9">
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                    <div class="float-start">
+                        <a href="/{{ chapter_info.number }}/">{{ chapter_info.number }}</a> | English Meaning: {{chapter_info.english_name}}
+                    </div>
+                    <div class="float-right arabic-amiri">{{ chapter_info.arabic_name }}</div>
                 </div>
-                <div class="float-right arabic-amiri">{{ chapter_info.arabic_name }}</div>
-            </div>
-            <div class="card-body">
-                {% for v in translations %}
-                    {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
-                    {% if not forloop.first %}<hr/>{% endif %}
-                    <div class="arabic-text arabic-amiri font-large my-2">
-                        <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
-                        <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
-                    </div>
-                    {% else %}
-                    <div class="font-normal my-3">
-                        <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
-                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
-                    </div>
-                    {% endifequal %}
-                {% endfor %}
+                <div class="card-body">
+                    {% for v in translations %}
+                        {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
+                        {% if not forloop.first %}<hr/>{% endif %}
+                        <div class="arabic-text arabic-amiri font-large my-2">
+                            <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                            <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                        </div>
+                        {% else %}
+                        <div class="font-normal my-3">
+                            <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                            <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
+                        </div>
+                        {% endifequal %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 
