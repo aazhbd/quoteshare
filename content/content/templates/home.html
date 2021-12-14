@@ -19,17 +19,17 @@
 
         {% for m in chapters %}
         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <div class="card card-outline-secondary my-2">
-                <div class="card-header font-weight-bold">
+            <div class="card shadow-2-strong my-2">
+                <div class="card-header ps-4 pb-1 shadow-2-soft">
                     <a href="/{{ m.number }}/">
-                    <div class="float-start">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</div>
-                    <div class="float-end arabic-amiri">{{ m.arabic_name }}</div>
+                    <span class="float-start fs-6">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</span>
+                    <span class="float-end arabic-amiri fs-5">{{ m.arabic_name }}</span>
                     </a>
                 </div>
-                <div class="card-body">
+                <div class="card-body shadow-2">
                     <span class="font-small">English Name: {{ m.english_name }}</span>
                     <span class="font-small">Total Verse: {{ m.total_verses }}</span>
-                    <a href="/{{ m.number }}" class="font-large card-link float-end fas fa-chevron-circle-right"></a>
+                    <a href="/{{ m.number }}" class="fs-4 float-end fas fa-chevron-circle-right text-info"></a>
                 </div>
             </div>
         </div>
