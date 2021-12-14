@@ -29,7 +29,7 @@ a, a div, a p, a span {
 
 
 @media (min-width: 992px) {
-    .collapse.dont-collapse-sm {
+    #langListCollapse {
         display: block;
         height: auto !important;
         visibility: visible;

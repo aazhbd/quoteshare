@@ -67,9 +67,9 @@
     <div class="container text-center p-2 pt-4 mx-auto">
 
         <div class="text-center text-white h4-responsive">
-            <span class="verse-number text-black rounded font-large m-3 p-2">{{ chapter_info.number }}</span>
-            <span class="m-3 fs-2">{{ chapter_info.transliteration }}</span>
-            <span class="h3-responsive fs-1 arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
+            <span class="verse-number text-black rounded fs-4 m-3 p-2">{{ chapter_info.number }}</span>
+            <span class="m-3 fs-4">{{ chapter_info.transliteration }}</span>
+            <span class="h3-responsive fs-3 arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
         </div>
         <div class="row flex-row justify-content-center banner-element p-1" style="overflow: hidden">
             <div class="col-lg-1 col-md-1 col-sm-1 col-1 float-start p-2">Verse:</div>
@@ -96,23 +96,27 @@
     <div class="row">
 
         <div class="col-lg-3">
-            <p class="my-2">Selected Translations</p>
+            <div class="p-2 mt-2 shadow-2-soft rounded-4">
+            <p class="my-2 fw-bold">Selected</p>
 
             <div class="list-group">
                 {% for author in selected_authors %}
                     <a href="" class="list-group-item card-content">
-                        {{author}}{% ifnotequal author.alang|stringformat:"s" "Arabic" %}
+                        {{author}}
+                        {% ifnotequal author.alang|stringformat:"s" "Arabic" %}
                             <button type="button" class="close float-end" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true">x</span></button>
                         {% endifnotequal %}
                     </a>
                 {% endfor %}
             </div>
+            </div>
 
-            <p class="my-2 justify-content-center">Translations
-                <button class="btn btn-outline-info d-lg-none d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#langListCollapse" aria-expanded="false" aria-controls="langListCollapse">Expand</button>
+        <div class="p-2 shadow-4-soft rounded-4">
+            <p class="my-2 fw-bold d-flex align-items-center">Available Translations
+                <a class="fas fa-chevron-circle-down d-lg-none d-xl-none fs-4 text-info m-2" data-bs-toggle="collapse" href="#langListCollapse" role="button" aria-expanded="false" aria-controls="langListCollapse"></a>
             </p>
 
-            <div class="collapse show" id="langListCollapse">
+            <div class="collapse" id="langListCollapse">
                 <div class="accordion accordion-flush" id="languageCollapse">
                     {% for li in language_info %}
                     <div class="accordion-item">
@@ -142,11 +146,12 @@
                     {% endfor %}
                 </div>
             </div>
+        </div>
 
         </div>
 
         <div class="col-lg-9">
-            <article class="p-4 shadow-2-strong m-2 mt-4 rounded-4 overflow-auto">
+            <article class="p-4 shadow-2-strong m-0 mt-4 rounded-4 overflow-auto">
                 {% for v in translations %}
                 {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
                 {% if not forloop.first %}<hr/>{% endif %}
