@@ -115,7 +115,7 @@
             </p>
 
             <div class="collapse show" id="langListCollapse">
-                <div class="accordion" id="languageCollapse">
+                <div class="accordion accordion-flush" id="languageCollapse">
                     {% for li in language_info %}
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{li.id}}">
@@ -136,7 +136,7 @@
                              aria-labelledby="heading{{li.id}}" data-mdb-parent="#languageCollapse">
                             <div class="accordion-body">
                             {% for ai in author_info %}{% if ai.alang == li %}
-                                <a class="author-name" id="{{ai.id}}"><p class="w-100">{{ai.name}}</p></a>
+                                <a class="author-name" id="{{ai.id}}"><p class="w-100 mb-0 p-2">{{ai.name}}</p></a>
                             {% endif %}{% endfor %}
                             </div>
                         </div>
