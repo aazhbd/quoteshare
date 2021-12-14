@@ -146,22 +146,22 @@
         </div>
 
         <div class="col-lg-9">
-        <article class="p-4 shadow-2-strong m-2 mt-4 rounded-4">
-            {% for v in translations %}
-            {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
-            {% if not forloop.first %}<hr/>{% endif %}
-            <div class="arabic-text arabic-amiri font-large my-2">
-                <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
-                <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
-            </div>
-            {% else %}
-            <div class="font-normal my-3">
-                <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
-                <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
-            </div>
-            {% endifequal %}
-            {% endfor %}
-        </article>
+            <article class="p-4 shadow-2-strong m-2 mt-4 rounded-4 overflow-auto">
+                {% for v in translations %}
+                {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
+                {% if not forloop.first %}<hr/>{% endif %}
+                <div class="arabic-text arabic-amiri font-large my-2">
+                    <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                    <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                </div>
+                {% else %}
+                <div class="font-normal my-3">
+                    <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
+                    <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
+                </div>
+                {% endifequal %}
+                {% endfor %}
+            </article>
         </div>
     </div>
 </div>
