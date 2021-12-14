@@ -71,38 +71,31 @@
             <span class="m-3">{{ chapter_info.transliteration }}</span>
             <span class="h3-responsive arabic-amiri m-3">{{ chapter_info.arabic_name }}</span>
         </div>
-        <div class="row d-flex justify-content-center form-inline banner-element p-2">
-            <div class="input-group col-lg-1 col-md-1 col-sm-1 col-1">Verse:</div>
-            <div class="input-group col-lg-7 col-md-6 col-sm-6 col-10">
-                <div class="ms-2 me-2 w-100" id="slider-range"></div>
-            </div>
-            <div class="input-group col-lg-2 col-md-3 col-sm-4 col-6">
-                <select id="fromverse" class="browser-default custom-select custom-select-sm" aria-label="FromVerse">
+        <div class="row flex-row justify-content-center banner-element p-1" style="overflow: hidden">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-1 float-start p-2">Verse:</div>
+            <div class="col-lg-7 col-md-7 col-sm-7 col-7 float-start p-2 flex-row">
+                <div class="me-2 float-start my-2 mw-100" style="min-width: 70%" id="slider-range"></div>
+                <select id="fromverse" class="browser-default custom-select custom-select-sm p-1 m-0 ms-1 float-start" aria-label="FromVerse">
                     {% for _ in ""|ljust:chapter_info.total_verses %}
                         <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
                     {% endfor %}
                 </select>
-                <select id="toverse" class="browser-default custom-select custom-select-sm pe-4" aria-label="ToVerse">
+                <select id="toverse" class="browser-default custom-select custom-select-sm p-1 m-0 float-start" aria-label="ToVerse">
                     {% for _ in ""|ljust:chapter_info.total_verses %}
                         <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
                     {% endfor %}
                 </select>
-                <div class="input-group-append">
-                    <button class="btn btn-md btn-default m-0 px-3 py-1 z-depth-0 waves-effect" id="goverse"
-                            type="button" value="Go"><i class="far fa-paper-plane"></i></button>
-                </div>
+                <button class="btn btn-md btn-default m-0 px-3 py-1 z-depth-0 waves-effect m-0 float-start" id="goverse" type="button" value="Go">
+                    <i class="fas fa-angle-double-right text-white" style="font-size: 20px"></i></button>
             </div>
         </div>
+
+
     </div>
 </header>
 
 <div class="container-fluid page-container">
     <div class="row">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-primary">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
 
         <div class="col-lg-3">
             <p class="my-2">Selected Translations</p>
