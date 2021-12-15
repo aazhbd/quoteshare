@@ -111,21 +111,19 @@
             </div>
             </div>
 
-        <div class="p-2 shadow-4-soft rounded-4">
-            <p class="my-2 fw-bold d-flex align-items-center">Available Translations
+        <div class="pt-2 shadow-4-soft rounded-4">
+            <p class="p-2 my-0 fw-bold d-flex align-items-center">Available Translations
                 <a class="fas fa-chevron-circle-down d-lg-none d-xl-none fs-4 text-info m-2" data-bs-toggle="collapse" href="#langListCollapse" role="button" aria-expanded="false" aria-controls="langListCollapse"></a>
             </p>
-
             <div class="collapse" id="langListCollapse">
                 <div class="accordion accordion-flush" id="languageCollapse">
                     {% for li in language_info %}
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{li.id}}">
-                            <button
+                            <button type="button"
+                                    data-mdb-toggle="collapse"
                                     {% if 'English' == li.name %}class="accordion-button"
                                     {% else %}class="accordion-button collapsed"{% endif %}
-                                    type="button"
-                                    data-mdb-toggle="collapse"
                                     data-mdb-target="#collapse{{li.id}}"
                                     aria-expanded="true"
                                     aria-controls="collapse{{li.id}}">
