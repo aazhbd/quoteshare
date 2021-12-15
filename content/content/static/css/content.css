@@ -139,13 +139,6 @@ a, a div, a p, a span {
     font-weight: 800;
 }
 
-.banner-element {
-    color: #fff;
-    border: 0px;
-    background-color: transparent;
-    min-height: 26px;
-}
-
 .search-box::-webkit-input-placeholder { color: white; }  /* WebKit, Blink, Edge */
 .search-box:-moz-placeholder { color: white; }  /* Mozilla Firefox 4 to 18 */
 .search-box::-moz-placeholder { color: white; }  /* Mozilla Firefox 19+ */
