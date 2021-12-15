@@ -22,18 +22,19 @@
             <div class="card shadow-2-strong my-2">
                 <div class="card-header ps-4 pb-1 shadow-2-soft">
                     <a href="/{{ m.number }}/">
-                    <span class="float-start fs-6">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</span>
-                    <span class="float-end arabic-amiri fs-5">{{ m.arabic_name }}</span>
+                        <span class="float-start fs-normal">{{ m.number }} : {{ m.transliteration|slice:"6:" }}</span>
+                        <span class="float-end arabic-amiri fs-normal">{{ m.arabic_name }}</span>
                     </a>
                 </div>
                 <div class="card-body shadow-2">
-                    <span class="font-small">English Name: {{ m.english_name }}</span>
-                    <span class="font-small">Total Verse: {{ m.total_verses }}</span>
+                    <span class="font-small">"{{ m.english_name }}"</span>
+                    <span class="font-small"> has {{ m.total_verses }} verses.</span>
                     <a href="/{{ m.number }}" class="fs-4 float-end fas fa-chevron-circle-right text-info"></a>
                 </div>
             </div>
         </div>
         {% endfor %}
+
     </div>
 </div>
 

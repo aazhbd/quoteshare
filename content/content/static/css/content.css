@@ -99,15 +99,15 @@ a, a div, a p, a span {
 }
 
 .page-container {
-    padding: 0 4%;
+    padding: 1% 2% !important;
 }
 
 .font-large {
     font-size: 2rem;
 }
 
-.font-normal {
-    font-size: 1rem;
+.font-small {
+    font-size: 0.8rem;
 }
 
 .content {
