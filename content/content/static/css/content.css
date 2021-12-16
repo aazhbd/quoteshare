@@ -38,6 +38,7 @@ a, a div, a p, a span {
 
 .btn {
     text-transform: unset !important;
+    padding: .4rem !important;
 }
 
 .arabic-amiri {
