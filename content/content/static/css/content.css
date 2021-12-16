@@ -36,6 +36,9 @@ a, a div, a p, a span {
     }
 }
 
+.btn {
+    text-transform: unset !important;
+}
 
 .arabic-amiri {
     font-family: 'Amiri', serif;
