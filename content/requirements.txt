@@ -17,7 +17,7 @@ idna==3.3
 importlib-metadata==4.8.2
 l18n==2021.3
 Markdown==3.3.6
-mysqlclient==2.1.0
+#mysqlclient==2.1.0
 openpyxl==3.0.9
 packaging==21.3
 Pillow==8.4.0
