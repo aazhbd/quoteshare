@@ -61,55 +61,56 @@
 </script>
 {% endblock %}
 
-{% block content %}
+{% block home-banner %}
+    <header class="title-banner py-2">
+        <div class="text-center text-white p-2">
+            <span class="verse-number text-black rounded fs-4 m-2 p-2">{{ chapter_info.number }}</span>
+            <span class="m-2 fs-4">{{ chapter_info.transliteration }}</span>
+            <span class="fs-3 arabic-amiri m-2">{{ chapter_info.arabic_name }}</span>
+        </div>
+        <div class="text-center text-white p-2">
+            <span class="me-2 fs-normal">English Name: {{ chapter_info.english_name }}</span>
+            <span class="me-2 fs-normal">Verse Count: {{ chapter_info.total_verses }}</span>
+            <button type="button" class="btn btn-light" data-mdb-toggle="modal" data-mdb-target="#verseRange">Select Verse Range</button>
+        </div>
 
-<header class="white-text title-banner py-2">
-    <div class="text-center text-white p-2">
-        <span class="verse-number text-black rounded fs-4 m-2 p-2">{{ chapter_info.number }}</span>
-        <span class="m-2 fs-4">{{ chapter_info.transliteration }}</span>
-        <span class="fs-3 arabic-amiri m-2">{{ chapter_info.arabic_name }}</span>
-    </div>
-    <div class="text-center text-white p-2">
-        <span class="me-2 fs-normal">English Name: {{ chapter_info.english_name }}</span>
-        <span class="me-2 fs-normal">Verse Count: {{ chapter_info.total_verses }}</span>
-        <button type="button" class="btn btn-light" data-mdb-toggle="modal" data-mdb-target="#verseRange">Select Verse Range</button>
-    </div>
-
-    <div class="modal fade" id="verseRange" tabindex="-1" aria-labelledby="verseRangeLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="verseRangeLabel">Select Verse Range</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="form-outline mb-4">
-                        <label class="p-2" for="slider-range">Verse: </label>
-                        <div class="p-2 pe-3 w-100"><div class="w-100" id="slider-range"></div></div>
+        <div class="modal fade" id="verseRange" tabindex="-1" aria-labelledby="verseRangeLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="verseRangeLabel">Select Verse Range</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="form-outline mb-4">
-                        <select id="fromverse" class="custom-select p-2 w-25" aria-label="FromVerse">
-                            {% for _ in ""|ljust:chapter_info.total_verses %}
-                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                            {% endfor %}
-                        </select> -
-                        <select id="toverse" class="custom-select p-2 w-25" aria-label="ToVerse">
-                            {% for _ in ""|ljust:chapter_info.total_verses %}
-                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="modal-body text-center">
+                        <div class="form-outline mb-4">
+                            <label class="p-2" for="slider-range">Verse: </label>
+                            <div class="p-2 pe-3 w-100"><div class="w-100" id="slider-range"></div></div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <select id="fromverse" class="custom-select p-2 w-25" aria-label="FromVerse">
+                                {% for _ in ""|ljust:chapter_info.total_verses %}
+                                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                                {% endfor %}
+                            </select> -
+                            <select id="toverse" class="custom-select p-2 w-25" aria-label="ToVerse">
+                                {% for _ in ""|ljust:chapter_info.total_verses %}
+                                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info" data-mdb-dismiss="modal">Close</button>
-                    <button class="btn btn-primary waves-effect" id="goverse" type="button" title="apply">Apply</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info" data-mdb-dismiss="modal">Close</button>
+                        <button class="btn btn-primary waves-effect" id="goverse" type="button" title="apply">Apply</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</header>
+    </header>
+{% endblock %}
 
+{% block content %}
 <div class="container-fluid page-container">
     <div class="row">
 
