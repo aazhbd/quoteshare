@@ -104,6 +104,7 @@ a, a div, a p, a span {
 
 .page-container {
     padding: 1% 2% !important;
+    min-height: calc(100vh - 240px);
 }
 
 .font-large {
