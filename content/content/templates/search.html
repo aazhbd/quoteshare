@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}{% load i18n %}{% load custom_tags %}
-{% block title %} Home {% endblock %}
+{% block title %}Search result for {{ result_keyword }}{% endblock %}
+
+{% block description %}Search result for {{ result_keyword }}{% endblock %}
+{% block keywords %}Search result for {{ result_keyword }}{% endblock %}
+
 
 {% block scripttags %}
 {% endblock %}
