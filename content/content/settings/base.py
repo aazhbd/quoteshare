@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'wagtailmarkdown',
     'blog',
     'quran',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [

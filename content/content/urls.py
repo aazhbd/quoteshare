@@ -7,12 +7,14 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+from wagtail.contrib.sitemaps.views import sitemap
 
 from django.views.generic import TemplateView
 from quran import views
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='index'),
+    path('sitemap.xml', sitemap),
     path('qsearch/', views.SearchView.as_view(), name='qsearch'),
 
     path('<int:chapter>/', views.ChapterView.as_view(), name='chapter'),
