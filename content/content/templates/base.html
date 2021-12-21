@@ -62,9 +62,9 @@
                         <select name="lang" class="custom-select col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 my-0 rounded">
                             {% for lang in language_info %}
                                 {% if lang.iso_code == 'en' %}
-                                    <option value="{{ lang.iso_code|lower }}" selected>{{ lang.iso_code|upper }}</option>
+                                    <option value="{{ lang.iso_code|lower }}" selected>{{ lang.name }}</option>
                                 {% else %}
-                                    <option value="{{ lang.iso_code|lower }}">{{ lang.iso_code|upper }}</option>
+                                    <option value="{{ lang.iso_code|lower }}">{{ lang.name }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>
