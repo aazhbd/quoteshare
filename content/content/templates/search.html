@@ -58,7 +58,7 @@
             {% endif %}
                 {% for v in page_obj %}
                 <li class="list-group-item">
-                    <h5 class="mt-0 mb-2 font-weight-bold"><a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{ m.transliteration|simplify }} {{v.chapter.number}}:{{v.number}}</a></h5>
+                    <h5 class="mt-0 mb-2 font-weight-bold"><a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{ m.transliteration }} {{v.chapter.number}}:{{v.number}}</a></h5>
                     {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
                     <div class="arabic-text arabic-amiri font-large my-2">
                         <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
