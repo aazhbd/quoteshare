@@ -19,7 +19,7 @@ info_dict = {
     'queryset': Chapter.objects.all(),
 }
 
-sitemapset = {'chapters': GenericSitemap(info_dict, priority=0.6), 'discuss': Sitemap}
+sitemapset = {'chapters': GenericSitemap(info_dict, priority=0.8), 'discuss': Sitemap}
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='index'),
