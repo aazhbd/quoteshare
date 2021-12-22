@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Language(models.Model):
@@ -43,6 +44,9 @@ class Chapter(models.Model):
 
     def __str__(self):
         return str(self.number) + " - " + str(self.transliteration)
+
+    def get_absolute_url(self):
+        return reverse('chapter', args=[str(self.id)])
 
     class Meta:
         pass
