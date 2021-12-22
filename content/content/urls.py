@@ -7,14 +7,26 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-from wagtail.contrib.sitemaps.views import sitemap
+from wagtail.contrib.sitemaps.sitemap_generator import Sitemap
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap as django_sitemap
 
 from django.views.generic import TemplateView
 from quran import views
+from quran.models import Chapter
+
+info_dict = {
+    'queryset': Chapter.objects.all(),
+}
+
+sitemapset = {'chapters': GenericSitemap(info_dict, priority=0.6), 'discuss': Sitemap}
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='index'),
-    path('sitemap.xml', sitemap),
+    path('sitemap.xml', django_sitemap,
+         {'sitemaps': sitemapset},
+         name='django.contrib.sitemaps.views.sitemap'),
+
     path('qsearch/', views.SearchView.as_view(), name='qsearch'),
 
     path('<int:chapter>/', views.ChapterView.as_view(), name='chapter'),
