@@ -26,6 +26,7 @@ urlpatterns = [
     path('sitemap.xml', django_sitemap,
          {'sitemaps': sitemapset},
          name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', views.CrawlerView.as_view()),
 
     path('qsearch/', views.SearchView.as_view(), name='qsearch'),
 
