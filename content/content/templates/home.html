@@ -24,7 +24,7 @@
             <div class="card shadow-2-strong my-2">
                 <div class="card-header ps-4 pb-1 shadow-2-soft">
                     <a href="/{{ m.number }}/">
-                        <span class="float-start fs-normal fw-bold">{{ m.number }} : {{ m.transliteration|slice:"6:"|simplify }}</span>
+                        <span class="float-start fs-normal fw-bold">{{ m.number }} : {{ m.transliteration|simplify }}</span>
                         <span class="float-end arabic-amiri fs-normal">{{ m.arabic_name }}</span>
                     </a>
                 </div>
