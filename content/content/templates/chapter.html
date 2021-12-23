@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailuserbar custom_tags %}{% load i18n %}
-{% block title %} Chapter {{ chapter_info.number }} | {{chapter_info.transliteration}} {% endblock %}
+{% block title %} Chapter {{ chapter_info.number }} | {{ chapter_info.transliteration|simplify }} {{ chapter_info.arabic_name }} {% endblock %}
 
 {% block description %}Chapter {{ chapter_info.number }}, {{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name }},{% endblock %}
 {% block keywords %}Chapter {{ chapter_info.number }}, {{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name }},{% endblock %}
