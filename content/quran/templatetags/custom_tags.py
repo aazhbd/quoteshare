@@ -15,3 +15,9 @@ def simplify(value):
     import unicodedata
     return unicodedata.normalize('NFD', value).encode('ascii', 'ignore').decode("utf-8").replace('\'', '').replace('`', '')
 
+
+@register.filter
+def uninormal(value):
+    import unicodedata
+    return unicodedata.normalize('NFC', value)
+
