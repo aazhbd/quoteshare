@@ -190,7 +190,7 @@
                 {% if not forloop.first %}<hr/>{% endif %}
                 <div class="arabic-text arabic-amiri font-large my-2">
                     <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;
-                    <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                    <span lang="ar" xml:lang="ar">{{v.vtext|uninormal|safe}}</span>
                 </div>
                 {% else %}
                 <div class="font-normal my-3">
