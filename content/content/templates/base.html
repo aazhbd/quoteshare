@@ -89,6 +89,8 @@
         {% block home-banner %}{% endblock %}
         {% block content %}{% endblock %}
 
+        <button type="button" class="btn-lg btn-floating border-0 fas fa-arrow-up cyan8 rounded-circle text-white" id="btn-back-to-top"></button>
+
         <footer class="page-footer footer white-text pt-2 mb-0 w-100 title-banner">
 
             <div class="footer-copyright text-center py-4 text-white">
@@ -111,6 +113,25 @@
                         window.location.pathname = "/" + chapterNum.split('-')[0].trim();
                     }
                 });
+
+                let backTop = document.getElementById("btn-back-to-top");
+                window.onscroll = function () {
+                    scrollFunction();
+                };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 ||document.documentElement.scrollTop > 20) {
+                        backTop.style.display = "block";
+                    } else {
+                        backTop.style.display = "none";
+                    }
+                }
+
+                backTop.addEventListener("click", backToTop);
+                function backToTop() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
             });
         </script>
     </body>
