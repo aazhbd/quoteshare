@@ -194,7 +194,7 @@
                 {% else %}
                 <div class="font-normal my-3">
                     <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;
-                    <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
+                    <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|uninormal|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                 </div>
                 {% endifequal %}
                 {% endfor %}
