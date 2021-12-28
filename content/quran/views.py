@@ -7,6 +7,7 @@ from django.views import generic
 from django.views.generic import TemplateView
 from wagtail.core.models import Site
 
+
 class ChapterView(generic.ListView):
     model = Verse
     context_object_name = 'translations'
