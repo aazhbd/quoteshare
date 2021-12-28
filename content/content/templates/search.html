@@ -50,12 +50,12 @@
 <div class="container-fluid page-container">
     <div class="row">
         <div class="col-lg-12">
-            <ul class="list-group m-4">
             {% if not page_obj %}
-                <article aria-label="search-results" class="p-4 shadow-2-strong m-0 mt-4 rounded-4 overflow-auto" style="min-height: 60vh">
-                    <p class="card-body">No results found.</p>
-                </article>
+            <article aria-label="search-results" class="p-4 shadow-2-strong m-0 mt-4 rounded-4 overflow-auto" style="min-height: 60vh">
+                <p class="card-body">No results found.</p>
+            </article>
             {% endif %}
+            <ul class="list-group m-4">
                 {% for v in page_obj %}
                 <li class="list-group-item">
                     <h5 class="mt-0 mb-2 font-weight-bold"><a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{ v.chapter.transliteration|simplify }} {{v.chapter.number}}:{{v.number}}</a></h5>
