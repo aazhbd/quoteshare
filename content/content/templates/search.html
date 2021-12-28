@@ -62,12 +62,12 @@
                     {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
                     <div class="arabic-text arabic-amiri font-large my-2">
                         <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
-                        <span lang="ar" xml:lang="ar">{{v.vtext|safe}}</span>
+                        <span lang="ar" xml:lang="ar">{{v.vtext|uninormal|safe}}</span>
                     </div>
                     {% else %}
                     <div class="font-normal my-3">
                         <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
-                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
+                        <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|uninormal|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                     </div>
                     {% endifequal %}
                 </li>
