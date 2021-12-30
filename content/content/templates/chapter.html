@@ -69,7 +69,7 @@
         <div class="text-center text-white p-2">
             <span class="verse-number text-black rounded fs-4 m-2 p-2">{{ chapter_info.number }}</span>
             <span class="m-2 fs-4">{{ chapter_info.transliteration }}</span>
-            <span class="fs-3 arabic-amiri m-2">{{ chapter_info.arabic_name }}</span>
+            <span class="fs-3 arabic-amiri m-2">{{ chapter_info.arabic_name|uninormal }}</span>
         </div>
         <div class="text-center text-white p-2">
             <span class="me-2 fs-normal">English Name: {{ chapter_info.english_name }}</span>
