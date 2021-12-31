@@ -13,6 +13,6 @@ def menu_processor(request):
     #                     66, 67, 69, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81]
     #.filter(id__in=distinct_authors).order_by('name')
     # distinct authors 31.12.2021
-    info['author_info'] = Author.objects.all()
+    info['author_info'] = Author.objects.order_by('name')
     info['language_info'] = Language.objects.filter(id__in=list(info['author_info'].values_list('alang', flat=True))).order_by('name')
     return info
