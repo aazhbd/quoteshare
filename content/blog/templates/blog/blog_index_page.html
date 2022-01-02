@@ -32,7 +32,7 @@
                         <div class="card-body" style="min-height: 200px;">
                             <h5 class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></h5>
                             <p class="card-text">
-                                {{ post.specific.sub_title }}
+                                {{ post.specific.sub_title|truncatechars:80 }}
                             </p>
                             <a href="{% pageurl post %}" class="btn btn-primary">Read More</a>
                         </div>
