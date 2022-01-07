@@ -2,11 +2,11 @@ from .base import *
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-DEBUG = False
+DEBUG = True
 
 SECRET_KEY = 'rhbrzudcp7q=o5$@55r&j1c1-f+z5h$z6s60h@^ulxms(=6a5a'
 
-ALLOWED_HOSTS = ['quran-contents.com', 'www.quran-contents.com']
+ALLOWED_HOSTS = ['quran-contents.com', 'www.quran-contents.com', '*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
