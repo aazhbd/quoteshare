@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 SECRET_KEY = 'rhbrzudcp7q=o5$@55r&j1c1-f+z5h$z6s60h@^ulxms(=6a5a'
 
