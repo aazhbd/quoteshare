@@ -21,8 +21,8 @@
         <section aria-label="list-posts" class="text-center">
             <div class="row">
                 {% for post in page.get_children %}
-                <div class="col-lg-3 col-md-3 col-sm-1 mb-4">
-                    <div class="card shadow-1-strong">
+                <div class="col-lg-4 col-md-4 col-sm-1 mb-4">
+                    <div class="card shadow-1-soft">
                         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                             {% with post.specific.image as main_image %}
                                 {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
