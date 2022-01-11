@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags wagtailmarkdown %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailmarkdown wagtailmetadata_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
+
+{% block meta_tag %}
+    {% meta_tags %}
+{% endblock %}
 
 {% block content %}
 <main>
