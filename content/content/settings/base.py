@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'wagtail.contrib.modeladmin',
     'wagtailmarkdown',
+    'wagtailmetadata',
     'blog',
     'quran',
 ]
