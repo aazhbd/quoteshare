@@ -6,9 +6,10 @@ from wagtail.search import index
 
 from wagtailmarkdown.edit_handlers import MarkdownPanel
 from wagtailmarkdown.fields import MarkdownField
+from wagtailmetadata.models import MetadataPageMixin
 
 
-class BlogIndexPage(Page):
+class BlogIndexPage(MetadataPageMixin, Page):
     sub_title = models.CharField(max_length=600, blank=True)
     body = MarkdownField(blank=True)
     image = models.ForeignKey('wagtailimages.Image', blank=True, null=True, on_delete=models.PROTECT, related_name='blog_index_image')
@@ -25,7 +26,7 @@ class BlogIndexPage(Page):
     ]
 
 
-class BlogPage(Page):
+class BlogPage(MetadataPageMixin, Page):
     sub_title = models.CharField(max_length=600, blank=True)
     body = MarkdownField(blank=True)
     image = models.ForeignKey('wagtailimages.Image', blank=True, null=True, on_delete=models.PROTECT, related_name='blog_image')
