@@ -13,12 +13,12 @@
             <nav aria-label="Search results">
                 <ul class="pagination pg-blue justify-content-center">
                     {% if page_obj.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" aria-label="First" href="?{% url_replace request 'page' 1 %}"><i class="fas fa-step-backward"></i> First</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" aria-label="First" href="?{% url_replace request 'page' page_obj.previous_page_number %}"><i class="fas fa-chevron-left"></i> Previous</a>
-                        </li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="First" href="?{% url_replace request 'page' 1 %}"><i class="fas fa-step-backward"></i> First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="First" href="?{% url_replace request 'page' page_obj.previous_page_number %}"><i class="fas fa-chevron-left"></i> Previous</a>
+                    </li>
                     {% endif %}
 
                     <li class="page-item">
@@ -28,12 +28,12 @@
                         <a class="page-link">Total {{ result_count }} {% if result_lang %}in Language {{ result_lang|upper }}{% endif %}</a>
                     </li>
                     {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a href="?{% url_replace request 'page' page_obj.next_page_number %}" class="page-link" aria-label="Next">Next <i class="fas fa-chevron-right"></i></a>
-                        </li>
-                        <li class="page-item">
-                            <a href="?{% url_replace request 'page' page_obj.paginator.num_pages %}" class="page-link" aria-label="Last">Last <i class="fas fa-step-forward"></i></a>
-                        </li>
+                    <li class="page-item">
+                        <a href="?{% url_replace request 'page' page_obj.next_page_number %}" class="page-link" aria-label="Next">Next <i class="fas fa-chevron-right"></i></a>
+                    </li>
+                    <li class="page-item">
+                        <a href="?{% url_replace request 'page' page_obj.paginator.num_pages %}" class="page-link" aria-label="Last">Last <i class="fas fa-step-forward"></i></a>
+                    </li>
                     {% endif %}
                 </ul>
             </nav>
