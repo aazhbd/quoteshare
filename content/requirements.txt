@@ -33,6 +33,7 @@ telepath==0.2
 urllib3==1.26.7
 wagtail==2.15.1
 wagtail-markdown==0.7.0
+wagtail-metadata==3.4.1
 webencodings==0.5.1
 whitenoise==5.3.0
 Willow==1.4
