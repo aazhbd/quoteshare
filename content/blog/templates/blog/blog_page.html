@@ -47,15 +47,15 @@
                 {% for post in recommended %}
                 <div class="card shadow-1-soft">
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-md-4 p-2">
                             {% with post.specific.image as main_image %}
                                 {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
                             {% endwith %}
                             <a href="{% pageurl post %}"><div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div></a>
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body">
-                                <p class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></p>
+                            <div class="card-body p-2">
+                                <p class="card-text"><a href="{% pageurl post %}">{{ post.title }}</a></p>
                             </div>
                         </div>
                     </div>
