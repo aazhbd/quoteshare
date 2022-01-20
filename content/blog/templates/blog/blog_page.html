@@ -47,7 +47,7 @@
                 {% for post in recommended %}
                 <div class="card shadow-1-soft mb-3" style="max-width: 540px;">
                     <div class="row g-0">
-                        <div class="col-md-4 bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <div class="col-md-4">
                             {% with post.specific.image as main_image %}
                                 {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
                             {% endwith %}
@@ -55,10 +55,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></h5>
-                                <p class="card-text fs-normal">
-                                    {{ post.specific.sub_title|truncatechars:80 }}
-                                </p>
+                                <p class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></p>
                             </div>
                         </div>
                     </div>
