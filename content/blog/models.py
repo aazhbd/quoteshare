@@ -41,3 +41,8 @@ class BlogPage(MetadataPageMixin, Page):
         index.SearchField('sub_title'),
         index.SearchField('body'),
     ]
+
+    def get_context(self, request):
+        context = super(BlogPage, self).get_context(request)
+        context['recommended'] = BlogPage.objects.live().exclude(id=self.id).order_by('?')[:5]
+        return context
