@@ -8,6 +8,8 @@ from wagtailmarkdown.edit_handlers import MarkdownPanel
 from wagtailmarkdown.fields import MarkdownField
 from wagtailmetadata.models import MetadataPageMixin
 
+from quran.models import Chapter
+
 
 class BlogIndexPage(MetadataPageMixin, Page):
     sub_title = models.CharField(max_length=600, blank=True)
@@ -45,4 +47,5 @@ class BlogPage(MetadataPageMixin, Page):
     def get_context(self, request):
         context = super(BlogPage, self).get_context(request)
         context['recommended'] = BlogPage.objects.live().exclude(id=self.id).order_by('?')[:5]
+        context['surah'] = Chapter.objects.order_by('?')[:5]
         return context
