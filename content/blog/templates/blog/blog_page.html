@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags wagtailmarkdown wagtailmetadata_tags %}
+{% load static custom_tags wagtailcore_tags wagtailimages_tags wagtailmarkdown wagtailmetadata_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
@@ -60,6 +60,22 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+
+                {% for m in surah %}
+                    <div class="card shadow-2-soft my-2">
+                        <div class="card-header ps-4 pb-1 shadow-2-soft">
+                            <a href="/{{ m.number }}/">
+                                <span class="float-start fs-normal fw-bold">{{ m.number }} : {{ m.transliteration|simplify }}</span>
+                                <span class="float-end arabic-amiri fs-normal">{{ m.arabic_name }}</span>
+                            </a>
+                        </div>
+                        <div class="card-body shadow-2">
+                            <span class="font-small">"{{ m.english_name }}"</span>
+                            <span class="font-small"> has {{ m.total_verses }} verses.</span>
+                            <a href="/{{ m.number }}" class="fs-4 float-end fas fa-chevron-circle-right text-info"></a>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
 
