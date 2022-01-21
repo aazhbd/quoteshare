@@ -47,5 +47,5 @@ class BlogPage(MetadataPageMixin, Page):
     def get_context(self, request):
         context = super(BlogPage, self).get_context(request)
         context['recommended'] = BlogPage.objects.live().exclude(id=self.id).order_by('?')[:5]
-        context['surah'] = Chapter.objects.order_by('?')[:5]
+        context['surah'] = Chapter.objects.order_by('?')[:10]
         return context

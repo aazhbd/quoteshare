@@ -63,19 +63,16 @@
                 {% endfor %}
 
                 {% for m in surah %}
-                    <div class="card shadow-2-soft my-2">
-                        <div class="card-header ps-4 pb-1 shadow-2-soft">
-                            <a href="/{{ m.number }}/">
-                                <span class="float-start fs-normal fw-bold">{{ m.number }} : {{ m.transliteration|simplify }}</span>
-                                <span class="float-end arabic-amiri fs-normal">{{ m.arabic_name }}</span>
-                            </a>
-                        </div>
-                        <div class="card-body shadow-2">
-                            <span class="font-small">"{{ m.english_name }}"</span>
-                            <span class="font-small"> has {{ m.total_verses }} verses.</span>
-                            <a href="/{{ m.number }}" class="fs-4 float-end fas fa-chevron-circle-right text-info"></a>
-                        </div>
-                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <a href="/{{ m.number }}/"><span class="float-start fs-normal fw-bold">{{ m.number }} : {{ m.transliteration|simplify }}</span></a>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">{{ m.total_verses }} verses</span>
+                        </li>
+                    </ul>
                 {% endfor %}
             </div>
 
