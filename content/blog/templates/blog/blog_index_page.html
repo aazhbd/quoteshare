@@ -13,27 +13,26 @@
         <article aria-label="blog-index" class="markdown-body p-2">
             {{ page.body|markdown }}
         </article>
-        <section aria-label="list-posts" class="text-center">
-            <div class="row">
-                {% for post in page.get_children %}
-                <div class="col-lg-4 col-md-4 col-sm-1 mb-2">
-                    <div class="card">
-                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                            {% with post.specific.image as main_image %}
-                                {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
-                            {% endwith %}
-                            <a href="{% pageurl post %}"><div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div></a>
-                        </div>
-                        <div class="card-body" style="min-height: 200px;">
-                            <h5 class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></h5>
-                            <p class="card-text">{{ post.specific.sub_title|truncatechars:80 }}</p>
-                            <a href="{% pageurl post %}" class="btn btn-primary">Read More</a>
-                        </div>
+
+        <div class="row text-center">
+            {% for post in page.get_children %}
+            <div class="col-lg-4 col-md-4 col-sm-1 mb-2">
+                <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        {% with post.specific.image as main_image %}
+                            {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
+                        {% endwith %}
+                        <a href="{% pageurl post %}"><div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div></a>
+                    </div>
+                    <div class="card-body p-3">
+                        <h5 class="card-title p-0 mb-1" style="min-height: 60px;"><a href="{% pageurl post %}">{{ post.title }}</a></h5>
+                        <p class="card-text" style="min-height: 60px;">{{ post.specific.sub_title|truncatechars:80 }}</p>
+                        <a href="{% pageurl post %}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-        </section>
+            {% endfor %}
+        </div>
     </div>
 </main>
 {% endblock %}
