@@ -24,9 +24,9 @@
                             {% endwith %}
                             <a href="{% pageurl post %}"><div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div></a>
                         </div>
-                        <div class="card-body" style="min-height: 200px;">
+                        <div class="card-body">
                             <h5 class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></h5>
-                            <p class="card-text fs-normal">
+                            <p class="card-text fs-normal" style="min-height: 60px;">
                                 {{ post.specific.sub_title|truncatechars:80 }}
                             </p>
                             <a href="{% pageurl post %}" class="btn btn-primary">Read More</a>
