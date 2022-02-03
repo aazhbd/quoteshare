@@ -56,9 +56,9 @@
                     </ul>
 
                     <form class="d-flex w-100 justify-content-center align-content-center rounded-0" method="get" action="/qsearch/">
-                        <input class="form-control w-75 rounded-0" name="q" type="text" placeholder="Search in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
+                        <input class="form-control w-75 rounded-0 border-0" name="q" type="text" placeholder="Search in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
 
-                        <select aria-label="language-list" name="lang" class="custom-select col-lg-1 col-sm-1 col-1 rounded-0 border-0">
+                        <select aria-label="language-list" name="lang" class="custom-select col-auto rounded-0 border-0">
                             {% for lang in language_info %}
                                 {% if lang.iso_code == 'en' %}
                                     <option value="{{ lang.iso_code|lower }}" selected>{{ lang.name }}</option>
