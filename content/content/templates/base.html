@@ -55,10 +55,10 @@
                         </li>
                     </ul>
 
-                    <form class="md-form my-0 d-flex row w-100 justify-content-center align-content-center form-inline ms-auto p-0" method="get" action="/qsearch/">
-                        <input class="form-control ms-3 w-75 search-box my-0" name="q" type="text" placeholder="Search a word in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
+                    <form class="d-flex w-100 justify-content-center align-content-center rounded-0" method="get" action="/qsearch/">
+                        <input class="form-control w-75 rounded-0" name="q" type="text" placeholder="Search in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
 
-                        <select aria-label="language-list" name="lang" class="custom-select col-xl-1 col-lg-2 col-md-2 col-sm-2 col-2 my-0 rounded">
+                        <select aria-label="language-list" name="lang" class="custom-select col-lg-1 col-sm-1 col-1 rounded-0 border-0">
                             {% for lang in language_info %}
                                 {% if lang.iso_code == 'en' %}
                                     <option value="{{ lang.iso_code|lower }}" selected>{{ lang.name }}</option>
@@ -67,6 +67,9 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
+                        <button type="submit" class="btn text-white ps-3 pe-3">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </form>
 
                     <div class="md-form my-0 mx-2 white">
@@ -78,6 +81,7 @@
                         </datalist>
                     </div>
                 </div>
+
             </div>
         </nav>
 
