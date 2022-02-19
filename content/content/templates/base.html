@@ -59,24 +59,22 @@
                         <input class="form-control w-75 rounded-0 border-0 rounded-start" name="q" type="text" placeholder="Search in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
 
                         <select aria-label="language-list" name="lang" class="custom-select col-auto rounded-0 border-0">
-                            {% for lang in language_info %}
-                                {% if lang.iso_code == 'en' %}
-                                    <option value="{{ lang.iso_code|lower }}" selected>{{ lang.name }}</option>
-                                {% else %}
-                                    <option value="{{ lang.iso_code|lower }}">{{ lang.name }}</option>
-                                {% endif %}
-                            {% endfor %}
+                        {% for lang in language_info %}
+                            {% if lang.iso_code == 'en' %}
+                            <option value="{{ lang.iso_code|lower }}" selected>{{ lang.name }}</option>
+                            {% else %}
+                            <option value="{{ lang.iso_code|lower }}">{{ lang.name }}</option>
+                            {% endif %}
+                        {% endfor %}
                         </select>
-                        <button type="submit" class="btn text-white ps-3 pe-3">
-                            <i class="fas fa-search"></i>
-                        </button>
+                        <button type="submit" class="btn text-white ps-3 pe-3"><i class="fas fa-search"></i></button>
                     </form>
 
                     <div class="md-form my-0 mx-2 white">
                         <input id="selected-chapter" list="select-chapters" value="" placeholder="Jump to Chapter" class="my-0 ps-2 form-control border-0 rounded-0">
                         <datalist id="select-chapters" class="w-100">
                             {% for m in chapters %}
-                                <option>{{ m.number }} - {{ m.transliteration|simplify }}</option>
+                            <option>{{ m.number }} - {{ m.transliteration|simplify }}</option>
                             {% endfor %}
                         </datalist>
                     </div>
