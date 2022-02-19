@@ -2,8 +2,8 @@
 {% load static wagtailcore_tags wagtailuserbar custom_tags %}{% load i18n %}
 {% block title %} Chapter {{ chapter_info.number }} | {{ chapter_info.transliteration|simplify }} {{ chapter_info.arabic_name|uninormal }} {% endblock %}
 
-{% block description %}{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations|slice:":2" %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}},{{v.author.name}},{{v.author.alang}}{% endfor %}{% endblock %}
-{% block keywords %}{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations|slice:":2" %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}},{{v.author.name}},{{v.author.alang}}{% endfor %}{% endblock %}
+{% block description %}{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations|slice:":2" %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}}{% endfor %}{% endblock %}
+{% block keywords %}{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations|slice:":2" %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}}{% endfor %}{% endblock %}
 
 {% block extra_js %}
 <script>
