@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static custom_tags wagtailcore_tags wagtailimages_tags wagtailmarkdown wagtailmetadata_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block meta_tag %}
+    {% meta_tags %}
+{% endblock %}
+
+{% block content %}
+<main class="mt-2">
+    <div class="container page-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ page.get_parent.url }}">Discuss</a></li>
+            </ol>
+        </nav>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="card mb-3 w-100">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                {% with page.image as main_image %}
+                                    {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
+                                {% endwith %}
+                                <a href="{% pageurl page %}"><div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div></a>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title fs-4">{{ page.title }}</h5>
+                                <p class="card-text">{{ page.sub_title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 mb-2">
+                            <article aria-label="blog-page" class="p-4 mb-1 markdown-body">{{ page.body|markdown }}</article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                {% for post in recommended %}
+                <div class="card shadow-1-soft">
+                    <div class="row g-0">
+                        <div class="col-md-4 p-2">
+                            {% with post.specific.image as main_image %}
+                                {% if main_image %}{% image main_image fill-640x320 class="img-fluid rounded-2" %}{% endif %}
+                            {% endwith %}
+                            <a href="{% pageurl post %}"><div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div></a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-2">
+                                <p class="card-text"><a href="{% pageurl post %}">{{ post.title }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% for m in surah %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <a href="/{{ m.number }}/"><span class="float-start fs-normal fw-bold">{{ m.transliteration|simplify }} (Chapter {{ m.number }})</span></a>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill bg-info">{{ m.total_verses }} verses</span>
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

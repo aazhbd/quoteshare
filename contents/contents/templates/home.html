@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n static custom_tags wagtailmetadata_tags %}
+{% block title %}Contents of Quran and its translations{% endblock %}
+
+{% block meta_tag %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contents of Quran and its translations">
+    <meta name="twitter:description" content="Contents of Quran and its translations">
+    <meta name="twitter:image" content="http://quran-contents.com/media/images/ashkan-forouzani.original.jpg">
+
+    <meta property="og:url" content="http://quran-contents.com/" />
+    <meta property="og:title" content="Contents of Quran and its translations" />
+    <meta property="og:description" content="Contents of Quran and its translations" />
+    <meta property="og:site_name" content="Quran-Contents.com" />
+
+    <meta property="og:image" content="http://quran-contents.com/media/images/ashkan-forouzani.original.jpg" />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="427" />
+
+    <meta itemprop="url" content="http://quran-contents.com/discuss/"/>
+    <meta itemprop="name" content="Contents of Quran and its translations">
+    <meta itemprop="description" content="Contents of Quran and its translations" />
+    <meta itemprop="image" content="http://quran-contents.com/media/images/ashkan-forouzani.original.jpg" />
+
+    <title>Contents of Quran and its translations</title>
+    <meta name="description" content="Contents of Quran and its translations">
+{% endblock %}
+
+{% block home-banner %}
+    <header class="title-banner py-2">
+        <div class="container text-center text-white p-2 pt-4 mx-auto">
+            <h2 class="heading h2-responsive">Contents of the Quran</h2>
+            <div>Translations of Quran in your own language.</div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+
+<div class="container page-container">
+    <div class="row">
+
+        {% for m in chapters %}
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="card shadow-1-strong my-2">
+                <div class="card-header ps-4 pb-1 shadow-2-soft">
+                    <a href="/{{ m.number }}/">
+                        <span class="float-start fs-normal fw-bold">{{ m.number }} : {{ m.transliteration|simplify }}</span>
+                        <span class="float-end arabic-amiri fs-normal">{{ m.arabic_name }}</span>
+                    </a>
+                </div>
+                <div class="card-body shadow-2">
+                    <span class="font-small">"{{ m.english_name }}"</span>
+                    <span class="font-small"> has {{ m.total_verses }} verses.</span>
+                    <a href="/{{ m.number }}" class="fs-4 float-end fas fa-chevron-circle-right text-info"></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}
