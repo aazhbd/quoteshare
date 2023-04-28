@@ -137,9 +137,9 @@
                 {% for author in selected_authors %}
                     <div class="list-group-item card-content">
                         {{author}}
-                        {% ifnotequal author.alang|stringformat:"s" "Arabic" %}
+                        {% if author.alang|stringformat:"s" != "Arabic" %}
                         <button type="button" class="close float-end" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true"><i class="fas fa-times"></i></span></button>
-                        {% endifnotequal %}
+                        {% endif %}
                     </div>
                 {% endfor %}
                 </div>
@@ -198,7 +198,7 @@
             {% endif %}
 
                 {% for v in translations %}
-                {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
+                {% if v.author.alang|stringformat:"s" == "Arabic" %}
                 {% if not forloop.first %}<hr/>{% endif %}
                 <div class="arabic-text arabic-amiri font-large my-2">
                     <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;
@@ -209,7 +209,7 @@
                     <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;
                     <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|uninormal|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                 </div>
-                {% endifequal %}
+                {% endif %}
                 {% endfor %}
             </article>
         </div>
