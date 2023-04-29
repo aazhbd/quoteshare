@@ -55,7 +55,7 @@
                 {% for v in page_obj %}
                 <li class="list-group-item">
                     <h5 class="mt-0 mb-2 font-weight-bold"><a href="/{{v.chapter.number}}/{{v.number}}/?t={{v.author.id}}">{{ v.chapter.transliteration|simplify }} {{v.chapter.number}}:{{v.number}}</a></h5>
-                    {% ifequal v.author.alang|stringformat:"s" "Arabic" %}
+                    {% if v.author.alang|stringformat:"s" == "Arabic" %}
                     <div class="arabic-text arabic-amiri font-large my-2">
                         <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
                         <span lang="ar" xml:lang="ar">{{v.vtext|uninormal|safe}}</span>
@@ -65,7 +65,7 @@
                         <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>
                         <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|uninormal|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                     </div>
-                    {% endifequal %}
+                    {% endif %}
                 </li>
                 {% endfor %}
             </ul>
