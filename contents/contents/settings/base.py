@@ -96,10 +96,11 @@ WSGI_APPLICATION = "contents.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quran_db',
+        'NAME': 'qdb',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'store',
+        'HOST': 'localhost',
+        'PORT':'55555',
     },
     "sqlite-default": {
         "ENGINE": "django.db.backends.sqlite3",
