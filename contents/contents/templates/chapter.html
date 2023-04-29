@@ -138,7 +138,7 @@
                     <div class="list-group-item card-content">
                         {{author}}
                         {% if author.alang|stringformat:"s" != "Arabic" %}
-                        <button type="button" class="close float-end" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                        <button type="button" class="close float-end badge badge-primary rounded-pill border-0" aria-label="Close"><span class="closeTranslation" id="{{ author.id }}" aria-hidden="true"><i class="fas fa-times"></i></span></button>
                         {% endif %}
                     </div>
                 {% endfor %}
