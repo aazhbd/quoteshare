@@ -80,7 +80,8 @@
 {% block home-banner %}
     <header class="title-banner py-2">
         <div class="text-center text-white p-2">
-            <span class="verse-number text-black rounded fs-4 m-2 p-2">{{ chapter_info.number }}</span>
+            <span class="btn btn-light shadow-2-strong bg-gradient console-text rounded-6 p-1 fw-bolder fs-5 h-100 justify-content-center align-items-center" style="width: 40px; height: 40px">
+                <a href="/{{ chapter_info.number }}/">{{ chapter_info.number }}</a></span>
             <span class="m-2 fs-4">{{ chapter_info.transliteration }}</span>
             <span class="fs-3 arabic-amiri m-2">{{ chapter_info.arabic_name|uninormal }}</span>
         </div>
@@ -183,7 +184,7 @@
         </div>
 
         <div class="col-lg-10">
-            <article aria-label="chapter-details" class="p-4 shadow-4-soft m-0 mt-1 rounded-4 overflow-auto">
+            <article aria-label="chapter-details" class="p-4 shadow-2-soft bg-light m-0 mt-1 rounded-4 overflow-auto">
 
             {% if chapter_info.number|stringformat:"s" != "1" and chapter_info.number|stringformat:"s" != "9" %}
             <div class="text-center justify-content-center">
@@ -201,13 +202,13 @@
                 {% if v.author.alang|stringformat:"s" == "Arabic" %}
                 {% if not forloop.first %}<hr/>{% endif %}
                 <div class="arabic-text arabic-amiri font-large my-2">
-                    <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;
+                    <a  href="/{{v.chapter.number}}/{{v.number}}" class="btn btn-light shadow-2-strong bg-gradient console-text rounded-4 pe-4 ps-4 fw-bolder fs-6 h-100 d-flex justify-content-center align-items-center float-end ms-3" style="width: 60px; height: 37px">{{v.chapter.number}}:{{v.number}}</a>
                     <span lang="ar" xml:lang="ar">{{v.vtext|uninormal|safe}}</span>
                 </div>
                 {% else %}
                 <div class="font-normal my-3">
-                    <a class="verse-number rounded p-2" href="/{{v.chapter.number}}/{{v.number}}">{{v.chapter.number}}:{{v.number}}</a>&nbsp;
-                    <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{v.vtext|uninormal|safe}} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
+                    <a href="/{{v.chapter.number}}/{{v.number}}" class="btn btn-light shadow-2-strong bg-gradient console-text rounded-4 pe-4 ps-4 fw-bolder fs-6 h-100 d-flex justify-content-center align-items-center float-start me-2" style="width: 60px; height: 37px">{{v.chapter.number}}:{{v.number}}</a>
+                    <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{ v.vtext|uninormal|safe }} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                 </div>
                 {% endif %}
                 {% endfor %}

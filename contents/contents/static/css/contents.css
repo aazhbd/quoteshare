@@ -73,6 +73,14 @@ a, a div, a p, a span {
     font-style: italic;
 }
 
+.console-text {
+    font-family: Consolas, monaco, monospace !important;
+}
+
+.label-text {
+    font-family: Calibri, "Calibri Light", Candara !important;
+}
+
 .verse-number {
     font-family: Consolas, monaco, monospace;
     font-size: 1rem;
