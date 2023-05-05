@@ -1,0 +1,132 @@
+{% load static wagtailcore_tags wagtailuserbar custom_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en" itemscope itemtype="https://schema.org/Article">
+    <head>
+        <meta charset="utf-8" />
+        {% block meta_tag %}
+        <title>{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+        {% block title_suffix %}{% wagtail_site as current_site %}{% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}Quran, translations, koran, قران, القرآن, قران كريم, القران الكريم," />
+        {% endblock %}
+        <meta name="keywords" content="{% block keywords %}{% endblock %} quran, translations, koran, قران, القرآن, قران كريم, القران الكريم," />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Quran, aazhbd, aazhbd@yahoo.com" />
+        <meta name="Copyright" content="Quran, AAZ H" />
+        <meta name="robots" content="index, follow, I followed" />
+        <link rel="icon" type="image/png" href="{% static 'images/quran_logo.png' %}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/contents.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/md.min.css' %}">
+        <script src="{% static 'js/contents.js' %}"></script>
+        <script src="{% static 'js/mdb.min.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+        <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9GDVSPDBT"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-K9GDVSPDBT');
+        </script>
+        {% block extra_css %}{% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-2-strong p-1">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">The Holy Quran</a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#mainMenu"
+                        aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item ripple">
+                            <a class="nav-link" href="/"><i class="fas fa-home"></i></a>
+                        </li>
+                        <li class="nav-item ripple">
+                            <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i></a>
+                        </li>
+                        <li class="nav-item ripple">
+                            <a class="nav-link" href="/discuss">Discuss</a>
+                        </li>
+                    </ul>
+
+                    <form class="d-flex w-100 justify-content-center align-content-center rounded-0" method="get" action="/qsearch/">
+                        <input class="form-control w-50 rounded-0 border-0 rounded-start" name="q" type="text" placeholder="Search in Quran or translations" value="{{ result_keyword }}" aria-label="Search">
+
+                        <select aria-label="language-list" name="lang" class="custom-select col-auto rounded-0 border-0">
+                        {% for lang in language_info %}
+                            {% if lang.iso_code == 'en' %}
+                            <option value="{{ lang.iso_code|lower }}" selected>{{ lang.name }}</option>
+                            {% else %}
+                            <option value="{{ lang.iso_code|lower }}">{{ lang.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                        <button type="submit" class="btn text-white ps-3 pe-3"><i class="fas fa-search"></i></button>
+                    </form>
+
+                    <div class="md-form my-0 mx-2 white">
+                        <input id="selected-chapter" list="select-chapters" value="" placeholder="Jump to Chapter" class="my-0 ps-2 form-control border-0 rounded-0">
+                        <datalist id="select-chapters" class="w-100">
+                            {% for m in chapters %}
+                            <option>{{ m.number }} - {{ m.transliteration|simplify }}</option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        {% block home-banner %}{% endblock %}
+        {% block content %}{% endblock %}
+
+        <button aria-label="to-top" type="button" class="btn-lg btn-floating border-0 fas fa-arrow-up cyan8 rounded-circle text-white" id="btn-back-to-top"></button>
+
+        <footer class="page-footer footer white-text pt-2 mb-0 w-100 title-banner">
+            <div class="footer-copyright text-center py-4 text-white">
+                <p><a href="/" title="Home">Home</a> |
+                    <a href="/discuss" title="Discussions">Discuss</a> |
+                    <a href="/privacy" title="Privacy">Privacy</a> |
+                    <a href="/about" title="About">About</a></p>
+                <p>&copy; 2013 - 2021 <a href="mailto:aazhbd@yahoo.com" title="Author">AAZ H</a> | <a target="_blank" href="http://www.articulatedlogic.com/about" title="About Author">ArticulatedLogic.com</a></p>
+            </div>
+        </footer>
+        {% block extra_js %}{% endblock %}
+        <script>
+        $(document).ready(function() {
+            $("#selected-chapter").on('input', function () {
+                var val = this.value;
+                if($('#select-chapters option').filter(function(){
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    var chapterNum = "" + this.value;
+                    window.location.pathname = "/" + chapterNum.split('-')[0].trim();
+                }
+            });
+
+            let backTop = document.getElementById("btn-back-to-top");
+            window.onscroll = function () {
+                scrollFunction();
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 ||document.documentElement.scrollTop > 20) {
+                    backTop.style.display = "block";
+                } else {
+                    backTop.style.display = "none";
+                }
+            }
+
+            backTop.addEventListener("click", backToTop);
+            function backToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        });
+        </script>
+    </body>
+</html>
