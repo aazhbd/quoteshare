@@ -56,7 +56,15 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
 MIDDLEWARE = [
+    "django.middleware.cache.UpdateCacheMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -65,7 +73,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",
 ]
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 40000
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 ROOT_URLCONF = "contents.urls"
 
