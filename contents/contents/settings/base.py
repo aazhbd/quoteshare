@@ -98,11 +98,9 @@ WSGI_APPLICATION = "contents.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'qdb',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT':'55555',
+        'OPTIONS': {
+            'read_default_file': '/home/articulatedlogic.com/domains/quran-contents.com/webapp/local.cnf',
+        },
     },
     "sqlite-default": {
         "ENGINE": "django.db.backends.sqlite3",

@@ -1,16 +1,15 @@
-"""
-WSGI config for contents project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
-"""
 
 import os
 
+from whitenoise import WhiteNoise
+
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "contents.settings.dev")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "content.settings.production")
+
+START = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 application = get_wsgi_application()
+application = WhiteNoise(application, root=START + '/static')
+application.add_files(START + '/media', prefix='media/')
+
