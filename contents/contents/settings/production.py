@@ -1,8 +1,8 @@
 from .base import *
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-DEBUG = True
+DEBUG = False
 
 SECRET_KEY = 'rhbrzudcp7q=o5$@55r&j1c1-f+z5h$z6s60h@^ulxms(=6a5a'
 
