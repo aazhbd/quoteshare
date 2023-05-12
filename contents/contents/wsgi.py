@@ -5,7 +5,7 @@ from whitenoise import WhiteNoise
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "content.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "contents.settings.production")
 
 START = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
