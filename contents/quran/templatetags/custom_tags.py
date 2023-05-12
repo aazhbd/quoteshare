@@ -13,11 +13,11 @@ def url_replace(request, field, value):
 @register.filter
 def simplify(value):
     import unicodedata
-    return unicodedata.normalize('NFC', value).replace('\'', '').replace('`', '').replace('\n', '')
+    return unicodedata.normalize('NFC', value).replace('\'', '').replace('`', '').replace('\n', '').rstrip()
 
 
 @register.filter
 def uninormal(value):
     import unicodedata
-    return unicodedata.normalize('NFC', value)
+    return unicodedata.normalize('NFC', value).replace('\n', '').rstrip()
 

@@ -3,11 +3,11 @@
 {% block title %} Chapter {{ chapter_info.number }} | {{ chapter_info.transliteration|simplify }} {{ chapter_info.arabic_name|uninormal }} {% endblock %}
 
 {% block description %}
-{% if translations|length > 2 %}
-{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations|slice:"2:6" %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}}{% endfor %}
+{% if translations|length > 2 %}{#
+{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations|slice:"2:6" %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}}{% endfor %}{#
 {% else %}
-{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}}{% endfor %}
-{% endif %}
+{{ chapter_info.transliteration|simplify }},{{ chapter_info.arabic_name|uninormal }},{% for v in translations %}{{v.chapter.number}},{{v.number}},{{v.vtext|uninormal|safe}}{% endfor %}{#
+{% endif %}{#
 {% endblock %}
 
 {% block keywords %}
