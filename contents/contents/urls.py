@@ -13,13 +13,18 @@ from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 from django.views.generic import TemplateView
 from quran import views
-from quran.models import Chapter
+from quran.models import Chapter, Verse
 
 info_dict = {
     'queryset': Chapter.objects.all(),
 }
 
-sitemapset = {'chapters': GenericSitemap(info_dict, priority=0.8), 'discuss': Sitemap}
+sitemapset = {'chapters': GenericSitemap(info_dict, priority=0.8),
+              'verses': GenericSitemap({
+                'queryset': Verse.objects.all(),
+              }, priority=0.8),
+              'discuss': Sitemap
+            }
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='index'),
@@ -32,7 +37,7 @@ urlpatterns = [
 
     path('<int:chapter>/', views.ChapterView.as_view(), name='chapter'),
     path('<int:chapter>/<int:verse>/', views.ChapterView.as_view(), name='verse'),
-    path('<int:chapter>/<int:verse>-<int:toverse>/', views.ChapterView.as_view(), name='verse'),
+    path('<int:chapter>/<int:verse>-<int:toverse>/', views.ChapterView.as_view(), name='verse-range'),
 
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
