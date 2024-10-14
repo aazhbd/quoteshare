@@ -194,7 +194,7 @@
                     <span lang="ar" xml:lang="ar">{{v.vtext|uninormal|safe}}</span>
                 </div>
                 {% else %}
-                <div class="font-normal my-3">
+                <div class="font-normal my-3 w-100">
                     <a href="/{{v.chapter.number}}/{{v.number}}" class="btn btn-light shadow-2-strong bg-gradient console-text rounded-4 pe-4 ps-4 fw-bolder fs-6 h-100 d-flex justify-content-center align-items-center float-start me-2" style="width: 60px; height: 37px">{{v.chapter.number}}:{{v.number}}</a>
                     <span {% if v.author.alang.direction == 2 %} class="translations-text translation-text-right" {% else %} class="translations-text" {% endif %} lang="{{v.author.alang.iso_code}}" xml:lang="{{v.author.alang.iso_code}}">{{ v.vtext|uninormal|safe }} <small class="translation-name"> - {{v.author.name}} ({{v.author.alang}})</small></span>
                 </div>
