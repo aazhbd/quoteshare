@@ -24,7 +24,7 @@ info_dict = {
 
 sitemapset = {
     'chapters': GenericSitemap(info_dict, priority=0.8),
-              
+
     'discuss': Sitemap,
 
     'verses': GenericSitemap({
