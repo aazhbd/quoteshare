@@ -11,6 +11,8 @@ from search import views as search_views
 
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
+from django.contrib.sitemaps import views as sitemap_views
+
 from django.views.generic import TemplateView
 from quran import views
 from quran.models import Chapter, Verse
@@ -19,18 +21,36 @@ info_dict = {
     'queryset': Chapter.objects.all(),
 }
 
-sitemapset = {'chapters': GenericSitemap(info_dict, priority=0.8),
-              'verses': GenericSitemap({
-                'queryset': Verse.objects.all(),
-              }, priority=0.8),
-              'discuss': Sitemap
-            }
+sitemapset = {
+    'chapters': GenericSitemap(info_dict, priority=0.8),
+              
+    'discuss': Sitemap,
+
+    'verses': GenericSitemap({
+        'queryset': Verse.objects.all(),
+    }, priority=0.8),
+}
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='index'),
-    path('sitemap.xml', django_sitemap,
-         {'sitemaps': sitemapset},
-         name='django.contrib.sitemaps.views.sitemap'),
+
+    path(
+        "sitemap.xml",
+        sitemap_views.index,
+        {"sitemaps": sitemapset},
+        name="django.contrib.sitemaps.views.index",
+    ),
+    path(
+        "sitemap-<section>.xml",
+        sitemap_views.sitemap,
+        {"sitemaps": sitemapset},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
+    
+    # path('sitemap.xml', django_sitemap,
+    #      {'sitemaps': sitemapset},
+    #      name='django.contrib.sitemaps.views.sitemap'),
+    
     path('robots.txt', views.CrawlerView.as_view()),
 
     path('qsearch/', views.SearchView.as_view(), name='qsearch'),
