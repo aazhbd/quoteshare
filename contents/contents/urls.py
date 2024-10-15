@@ -12,6 +12,7 @@ from search import views as search_views
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 from django.contrib.sitemaps import views as sitemap_views
+from django.views.decorators.cache import cache_page
 
 from django.views.generic import TemplateView
 from quran import views
@@ -27,7 +28,7 @@ sitemapset = {
     'discuss': Sitemap,
 
     'verses': GenericSitemap({
-        'queryset': Verse.objects.all(),
+        'queryset': Verse.objects.filter(author__name="Original Text"),
     }, priority=0.8),
 }
 
