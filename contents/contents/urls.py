@@ -28,7 +28,7 @@ sitemapset = {
     'discuss': Sitemap,
 
     'verses': GenericSitemap({
-        'queryset': Verse.objects.filter(author__name="Original Text"),
+        'queryset': Verse.objects.filter(author__name="Original Text").order_by('id'),
     }, priority=0.8),
 }
 
@@ -37,13 +37,13 @@ urlpatterns = [
 
     path(
         "sitemap.xml",
-        sitemap_views.index,
-        {"sitemaps": sitemapset},
+        cache_page(86400)(sitemap_views.index),
+        {"sitemaps": sitemapset, "sitemap_url_name": "sitemaps"},
         name="django.contrib.sitemaps.views.index",
     ),
     path(
         "sitemap-<section>.xml",
-        sitemap_views.sitemap,
+        cache_page(86400)(sitemap_views.sitemap),
         {"sitemaps": sitemapset},
         name="django.contrib.sitemaps.views.sitemap",
     ),
