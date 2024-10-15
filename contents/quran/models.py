@@ -22,7 +22,7 @@ class Author(models.Model):
     country = models.CharField(max_length=250, blank=True)
     city = models.CharField(max_length=250, blank=True)
     alang = models.ForeignKey(Language, related_name='author_language', on_delete=models.CASCADE, blank=True)
-    translation_type = models.CharField(max_length=50, blank=True)
+    translation_source = models.CharField(max_length=50, blank=True)
     date_published = models.DateTimeField(null=True, blank=True)
     enabled = models.BooleanField(default=True)
 
