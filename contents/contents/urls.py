@@ -41,17 +41,18 @@ urlpatterns = [
         {"sitemaps": sitemapset, "sitemap_url_name": "sitemaps"},
         name="django.contrib.sitemaps.views.index",
     ),
+
     path(
         "sitemap-<section>.xml",
         cache_page(86400)(sitemap_views.sitemap),
         {"sitemaps": sitemapset},
         name="django.contrib.sitemaps.views.sitemap",
     ),
-    
+
     # path('sitemap.xml', django_sitemap,
     #      {'sitemaps': sitemapset},
     #      name='django.contrib.sitemaps.views.sitemap'),
-    
+
     path('robots.txt', views.CrawlerView.as_view()),
 
     path('qsearch/', views.SearchView.as_view(), name='qsearch'),
