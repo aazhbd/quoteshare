@@ -18,8 +18,12 @@ from django.views.generic import TemplateView
 from quran import views
 from quran.models import Chapter, Verse
 
+class VerseSitemap(GenericSitemap):
+    limit = 6000
+
+
 info_dict = {
-    'queryset': Chapter.objects.all(),
+    'queryset': Chapter.objects.all().order_by('id'),
 }
 
 sitemapset = {
@@ -27,8 +31,8 @@ sitemapset = {
 
     'discuss': Sitemap,
 
-    'verses': GenericSitemap({
-        'queryset': Verse.objects.filter(author__name="Original Text").order_by('id'),
+    'verses': VerseSitemap({
+        'queryset': Verse.objects.all().order_by('id'),#filter(author__name="Original Text").order_by('id'),
     }, priority=0.8),
 }
 
@@ -38,6 +42,7 @@ urlpatterns = [
     path(
         "sitemap.xml",
         cache_page(86400)(sitemap_views.index),
+        # sitemap_views.index,
         {"sitemaps": sitemapset},
         name="django.contrib.sitemaps.views.index",
     ),
@@ -45,6 +50,7 @@ urlpatterns = [
     path(
         "sitemap-<section>.xml",
         cache_page(86400)(sitemap_views.sitemap),
+        # sitemap_views.sitemap,
         {"sitemaps": sitemapset},
         name="django.contrib.sitemaps.views.sitemap",
     ),
