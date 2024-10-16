@@ -46,7 +46,7 @@ class Chapter(models.Model):
         return str(self.number) + " - " + str(self.transliteration)
 
     def get_absolute_url(self):
-        return reverse('chapter', args=[str(self.id)])
+        return reverse('chapter', args=[str(self.id)]) + f'?t=7,60'
 
     class Meta:
         pass
