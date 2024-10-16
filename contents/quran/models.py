@@ -67,7 +67,7 @@ class Verse(models.Model):
         return str(self.chapter.number) + ":" + str(self.number) + " - " + str(self.vlang) + " - " + str(self.author)
 
     def get_absolute_url(self):
-        return reverse('verse', args=[str(self.chapter.number), str(self.number)])
+        return reverse('verse', args=[str(self.chapter.number), str(self.number)]) + f'?t=2'
 
     class Meta:
         pass
