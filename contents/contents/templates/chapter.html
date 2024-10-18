@@ -187,7 +187,7 @@
             {% endif %}
 
                 {% for v in translations %}
-                {% if v.author.alang|stringformat:"s" == "Arabic" %}
+                {% if v.author.name|stringformat:"s" == "Original Text" %}
                 {% if not forloop.first %}<hr/>{% endif %}
                 <div class="arabic-text arabic-amiri font-large my-2">
                     <a  href="/{{v.chapter.number}}/{{v.number}}" class="btn btn-light shadow-2-strong bg-gradient console-text rounded-4 pe-4 ps-4 fw-bolder fs-6 h-100 d-flex justify-content-center align-items-center float-end ms-3" style="width: 60px; height: 37px">{{v.chapter.number}}:{{v.number}}</a>
